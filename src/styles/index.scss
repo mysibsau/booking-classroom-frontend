@@ -1,0 +1,36 @@
+@import "./variables";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    font-family: 'Open Sans Regular', sans-serif;
+}
+
+html {
+    max-height: 100vh;
+}
+
+main {
+    width: 80%;
+    margin: auto;
+    margin-top: 100px;
+    padding-bottom: 50px;
+
+    h1 {
+        margin: auto;
+        margin-bottom: 30px;
+        text-align: left;
+    }
+
+    .addContent {
+        color: $primary-color;
+        cursor: pointer;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}

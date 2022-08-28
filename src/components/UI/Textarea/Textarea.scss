@@ -1,0 +1,34 @@
+@import "../variables";
+
+.myTextarea {
+    position: relative;
+
+    textarea {
+        resize: none;
+        width: 100%;
+        padding: 10px;
+        border: none;
+        background-color: $modest-color;
+        border-radius: 7px;
+        font-size: 16px;
+
+        &::placeholder {
+            font-size: 16px;
+            line-height: 127.7%;
+        }
+
+        &:active, &:focus{
+            outline: none;
+            border: 1px rgba($primary-color, .6) solid;
+            box-shadow: 0 0 0 1px rgba($primary-color, .4);
+        }
+    }
+
+    .textareaLength{
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        display: inline-block;
+        color: $modest-color-font;
+    }
+}

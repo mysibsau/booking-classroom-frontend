@@ -1,0 +1,42 @@
+@import "../variables";
+
+.input-container{
+    position: relative;
+
+    span{
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 25px;
+        height: 25px;
+        top: 10px;
+        right: 10px;
+        background-size: cover;
+    }
+
+    input{
+        width: 100%;
+        padding: 10px;
+        height: 45px;
+        border: none;
+        background-color: $modest-color;
+        border-radius: 7px;
+        font-size: 16px;
+
+        &.icon{
+            padding-right: 41px;
+        }
+
+        &::placeholder{
+            font-size: 16px;
+            line-height: 127.7%;
+        }
+
+        &:active, &:focus{
+            outline: none;
+            border: 1px rgba($primary-color, .6) solid;
+            box-shadow: 0 0 0 1px rgba($primary-color, .4);
+        }
+    }
+}

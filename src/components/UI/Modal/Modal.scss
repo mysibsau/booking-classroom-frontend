@@ -1,0 +1,47 @@
+@import "../variables";
+
+.modalContainer{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 100;
+    padding: 5vh 0;
+
+    display: none;
+
+    &.active{
+        display: block;
+    }
+
+    .modalContent{
+        position: relative;
+        max-width: 50%;
+        margin: auto;
+        padding: 70px 50px 50px;
+        border-radius: $border-radius;
+        background: white;
+
+        .modalTitle{
+            position: absolute;
+            left: 30px;
+            top: 25px;
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 127.7%;
+
+        }
+
+        .close{
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 30px;
+            z-index: 15;
+            cursor: pointer;
+            color: black;
+        }
+    }
+}
