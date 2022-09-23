@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { IconCloseX } from "../Icons";
 import "./Modal.scss";
 
@@ -9,7 +9,11 @@ interface IProps {
     title?: string;
 }
 
-const Modal: React.FC<IProps> = ({title, children, isShow, setIsShow}) => {
+const Modal: React.FC<IProps> = ({ title, children, isShow, setIsShow }) => {
+    useEffect(() => {
+        document.body.style.overflow = isShow ? "hidden" : ""
+    }, [isShow])
+
     return (
         <div className={`modalContainer ${isShow ? "active" : ""}`}>
             <div className={"modalContent"}>
@@ -19,7 +23,9 @@ const Modal: React.FC<IProps> = ({title, children, isShow, setIsShow}) => {
                     <IconCloseX color={"default"} size={25} />
                 </div>
 
-                {children}
+                <div className={"modalBody"}>
+                    {children}
+                </div>
             </div>
         </div>
     );

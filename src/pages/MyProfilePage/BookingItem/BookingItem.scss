@@ -1,0 +1,149 @@
+@import "src/styles/variables";
+
+.item-container {
+    position: relative;
+    margin-bottom: 20px;
+    border-radius: $border-radius;
+    background-color: white;
+
+    .booking-list.item {
+        position: relative;
+        padding: 20px;
+        font-size: 20px;
+
+        @media all and (max-width: 800px) {
+            padding: 10px 20px;
+        }
+
+        .name {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            word-wrap: normal;
+            text-overflow: ellipsis;
+            text-align: left;
+            line-height: 45px;
+        }
+
+        .status {
+            span {
+                border-radius: 25px;
+                display: inline-block;
+                padding: 10px 20px;
+                font-size: 16px;
+                width: 150px;
+            }
+
+            &.success {
+                span {
+                    background-color: rgba($success-color, 0.4);
+                    color: green;
+                }
+
+                @media all and (max-width: 800px) {
+                    background-color: rgba($success-color, 0.4);
+                }
+            }
+
+            &.warning {
+                span {
+                    background-color: rgba($warning-color, 0.4);
+                    color: orange;
+                }
+
+                @media all and (max-width: 800px) {
+                    background-color: rgba($warning-color, 0.4);
+                }
+            }
+
+            &.danger {
+                span {
+                    background-color: rgba($danger-color, 0.4);
+                    color: red;
+                }
+
+                @media all and (max-width: 800px) {
+                    background-color: rgba($danger-color, 0.4);
+                }
+            }
+
+            @media all and (max-width: 800px) {
+                position: absolute;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                top: 10px;
+                right: 10px;
+
+                span {
+                    display: none;
+                }
+            }
+        }
+
+        .icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+
+            @media all and (max-width: 800px) {
+                position: absolute;
+                bottom: 10px;
+                right: 10px;
+            }
+        }
+    }
+
+    .description {
+        position: relative;
+        border-top: 2px solid rgba($secondary-color, 0.2);
+        margin: 0 20px;
+        padding: 20px;
+
+        @media all and (max-width: 800px) {
+            padding: 10px 0;
+        }
+
+        .main-info-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            @media all and (max-width: 800px) {
+                grid-template-columns: 1fr;
+            }
+
+            .info-name {
+                grid-column-start: 1;
+                grid-column-end: 3;
+
+                @media all and (max-width: 800px) {
+                    grid-column-end: 2;
+                }
+            }
+
+            >div {
+                >div {
+                    margin-bottom: 5px;
+
+                    &:first-child {
+                        font-size: 20px;
+
+                        @media all and (max-width: 800px) {
+                            font-size: 16px;
+                        }
+                    }
+
+                    &:last-child {
+                        font-size: 16px;
+                        padding-left: 10px;
+
+                        @media all and (max-width: 800px) {
+                            font-size: 14px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

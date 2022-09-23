@@ -7,7 +7,7 @@ interface IProps{
 }
 
 const Loader:React.FC<IProps> = ({width, height}) => {
-    const loaderImg = require('../../../assets/loader.png')
+    const loaderImg = require('./loader.png')
 
     return (
         <div className={'loader'}>

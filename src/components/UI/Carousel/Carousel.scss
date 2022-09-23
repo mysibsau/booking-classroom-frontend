@@ -1,0 +1,49 @@
+@import "src/styles/variables";
+
+.carousel-container {
+    overflow: hidden;
+    position: relative;
+
+    .inner {
+        white-space: nowrap;
+        transition: 1s;
+
+        .carousel-item {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+    .indicators {
+        position: absolute;
+        bottom: 5px;
+        width: 100%;
+
+        display: flex;
+        justify-content: center;
+
+        .indicators-container {
+            position: relative;
+
+            display: flex;
+            justify-content: center;
+
+            background-color: rgba(white, 0.6);
+            border-radius: 15px;
+
+            >* {
+                cursor: pointer;
+                position: relative;
+                padding: 10px;
+                border-radius: 50px;
+                transition: 0.3s;
+
+                &.active {
+                    background-color: rgba($primary-color, 0.6);
+                }
+            }
+
+        }
+    }
+}

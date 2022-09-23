@@ -6,9 +6,10 @@ interface IProps {
     onChange: (value: string) => void;
     maxLength?: number;
     placeholder?: string;
+    required?: boolean;
 }
 
-const Textarea: React.FC<IProps> = ({ placeholder, value, onChange, maxLength }) => {
+const Textarea: React.FC<IProps> = ({ placeholder, value, onChange, maxLength, required }) => {
     return (
         <div className={"myTextarea"}>
             <textarea
@@ -17,6 +18,7 @@ const Textarea: React.FC<IProps> = ({ placeholder, value, onChange, maxLength })
                 rows={10}
                 placeholder={placeholder}
                 maxLength={maxLength}
+                required={required} 
             />
             {maxLength
                 ? <span className={"textareaLength"}>

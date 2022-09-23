@@ -1,0 +1,256 @@
+{
+    "rooms": {
+        "data": [
+            {
+                "id": 1,
+                "photo": [
+                    "src/assets/classroom1.jpeg",
+                    "src/assets/classroom2.jpeg"
+                ],
+                "description": "Описание аудитории включает в себя влфтпт фыатапо",
+                "addres": "ул. Ленина 71, Ал215",
+                "capacity": 30,
+                "equipment": [
+                    {
+                        "id": "11",
+                        "name": "Стул",
+                        "description": "Стел не сломан",
+                        "cont": 25
+                    },
+                    {
+                        "id": "12",
+                        "name": "Стул",
+                        "description": "Стел не сломан",
+                        "cont": 25
+                    }
+                ],
+                "booking_dates": {
+                    "date": "2022-02-13",
+                    "time_start": "18:30",
+                    "time_end": "19:30"
+                },
+                "admin": "Марина Маринова",
+                "admin_contact": "+79134568712"
+            },
+            {
+                "id": 2,
+                "photo": [
+                    "src/assets/classroom1.jpeg",
+                    "src/assets/classroom2.jpeg"
+                ],
+                "description": "Описание аудитории включает в себя влфтпт фыатапо",
+                "addres": "ул. Ленина 71, Ал214",
+                "capacity": 30,
+                "equipment": [
+                    {
+                        "id": "11",
+                        "name": "Стул",
+                        "description": "Стел не сломан",
+                        "cont": 25
+                    },
+                    {
+                        "id": "12",
+                        "name": "Стул",
+                        "description": "Стел не сломан",
+                        "cont": 25
+                    }
+                ],
+                "booking_dates": {
+                    "date": "2022-02-13",
+                    "time_start": "18:30",
+                    "time_end": "19:30"
+                },
+                "admin": "Марина Маринова",
+                "admin_contact": "+79134568712"
+            },
+            {
+                "id": 3,
+                "photo": [
+                    "src/assets/classroom1.jpeg",
+                    "src/assets/classroom2.jpeg"
+                ],
+                "description": "Описание аудитории включает в себя влфтпт фыатапо",
+                "addres": "ул. Ленина 71, Ал115",
+                "capacity": 30,
+                "equipment": [
+                    {
+                        "id": "11",
+                        "name": "Стул",
+                        "description": "Стел не сломан",
+                        "cont": 25
+                    },
+                    {
+                        "id": "12",
+                        "name": "Стул",
+                        "description": "Стел не сломан",
+                        "cont": 25
+                    }
+                ],
+                "booking_dates": {
+                    "date": "2022-02-13",
+                    "time_start": "18:30",
+                    "time_end": "19:30"
+                },
+                "admin": "Марина Маринова",
+                "admin_contact": "+79134568712"
+            },
+            {
+                "id": 4,
+                "photo": [
+                    "src/assets/classroom1.jpeg",
+                    "src/assets/classroom2.jpeg"
+                ],
+                "description": "Описание аудитории включает в себя влфтпт фыатапо",
+                "addres": "ул. Ленина 71, Ал416",
+                "capacity": 30,
+                "equipment": [
+                    {
+                        "id": "11",
+                        "name": "Стул",
+                        "description": "Стел не сломан",
+                        "cont": 25
+                    },
+                    {
+                        "id": "12",
+                        "name": "Стул",
+                        "description": "Стел не сломан",
+                        "cont": 25
+                    }
+                ],
+                "booking_dates": {
+                    "date": "2022-02-13",
+                    "time_start": "18:30",
+                    "time_end": "19:30"
+                },
+                "admin": "Марина Маринова",
+                "admin_contact": "+79134568712"
+            }
+        ],
+        "page": 1,
+        "per_page": 1,
+        "conut": 10
+    },
+    "auth": {
+        "token": "asfg124rfgv",
+        "name": "Oleg",
+        "id": 1,
+        "username": "oleg",
+        "password": "oleg"
+    },
+    "booking_my": [
+        {
+            "user_id": "1",
+            "contacts": "+7999333112123",
+            "user_status": "студент",
+            "position": "MPA22-01",
+            "description": "Бронирую аудиторию с целью кушать булочки",
+            "classroom_id": "1",
+            "classroom_adders": "ул.Ленина 22, Ал 222",
+            "booking_dates": {
+                "date_start": "2022-02-02",
+                "date_end": "2022-02-03"
+            },
+            "equipments": {
+                "1": 10,
+                "2": 2
+            },
+            "status": 2,
+            "comment": "Еблан?"
+        },
+        {
+            "user_id": "1",
+            "contacts": "+7999333112123",
+            "user_status": "студент",
+            "position": "MPA22-01",
+            "description": "Бронирую аудиторию с целью кушать булочки",
+            "classroom_id": "2",
+            "classroom_adders": "ул.Ленина 22, Ал 222",
+            "booking_dates": {
+                "date_start": "2022-02-02",
+                "date_end": "2022-02-03"
+            },
+            "equipments": {
+                "1": 10,
+                "2": 2
+            },
+            "status": 1,
+            "comment": "Еблан?"
+        },
+        {
+            "user_id": "1",
+            "contacts": "+7999333112123",
+            "user_status": "студент",
+            "position": "MPA22-01",
+            "description": "Бронирую аудиторию с целью кушать булочки",
+            "classroom_id": "6",
+            "classroom_adders": "ул.Ленина 22, Ал 222",
+            "booking_dates": {
+                "date_start": "2022-02-02",
+                "date_end": "2022-02-03"
+            },
+            "equipments": {
+                "1": 10,
+                "2": 2
+            },
+            "status": 0,
+            "comment": "Еблан?"
+        },
+        {
+            "user_id": "1",
+            "contacts": "+7999333112123",
+            "user_status": "студент",
+            "position": "MPA22-01",
+            "description": "Бронирую аудиторию с целью кушать булочки",
+            "classroom_id": "3",
+            "classroom_adders": "ул.Ленина 22, Ал 222",
+            "booking_dates": {
+                "date_start": "2022-02-02",
+                "date_end": "2022-02-03"
+            },
+            "equipments": {
+                "1": 10,
+                "2": 2
+            },
+            "status": 2,
+            "comment": "Еблан?"
+        },
+        {
+            "user_id": "1",
+            "contacts": "+7999333112123",
+            "user_status": "студент",
+            "position": "MPA22-01",
+            "description": "Бронирую аудиторию с целью кушать булочки",
+            "classroom_id": "4",
+            "classroom_adders": "ул.Ленина 22, Ал 222",
+            "booking_dates": {
+                "date_start": "2022-02-02",
+                "date_end": "2022-02-03"
+            },
+            "equipments": {
+                "1": 10,
+                "2": 2
+            },
+            "status": 2,
+            "comment": "Еблан?"
+        },
+        {
+            "user_id": "1",
+            "contacts": "+7999333112123",
+            "user_status": "студент",
+            "position": "MPA22-01",
+            "description": "Бронирую аудиторию с целью кушать булочки",
+            "classroom_id": "5",
+            "classroom_adders": "ул.Ленина 22, Ал 222",
+            "booking_dates": {
+                "date_start": "2022-02-02",
+                "date_end": "2022-02-03"
+            },
+            "equipments": {
+                "1": 10,
+                "2": 2
+            },
+            "status": 2,
+            "comment": "Еблан?"
+        }
+    ]
+}

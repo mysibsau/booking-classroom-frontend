@@ -1,0 +1,121 @@
+@import "src/styles/variables";
+
+.rules-container {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+
+    padding: 0 10%;
+    color: white;
+
+    @media screen and (max-width: 1500px) {
+        grid-template-columns: 1fr;
+    }
+
+    @media screen and (max-width: 1000px) {
+        padding: 0;
+        min-height: auto;
+    }
+
+    .rules-image-container {
+        .carouselItem-container {
+            width: 100%;
+            height: 500px;
+            max-height: 60vh;
+
+            position: relative;
+            margin: 2rem 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .image-container {
+                width: 100%;
+                height: 100%;
+
+                border-radius: 16px;
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: center;
+
+                .image {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+
+            .name,
+            .place {
+                position: absolute;
+                color: black;
+                font-size: 2rem;
+                background-color: rgba(white, 0.6);
+                padding: 10px;
+                border-radius: 8px;
+                font-style: italic;
+            }
+
+            .name {
+                bottom: 10px;
+                left: 10px;
+            }
+
+            .place {
+                right: 10px;
+                top: 10px;
+            }
+
+            @media screen and (max-width: 1000px) {
+                width: 90%;
+                height: 300px;
+
+                .name,
+                .place {
+                    font-size: 1rem;
+                    padding: 5px;
+                }
+            }
+        }
+    }
+
+    .rules-info {
+        position: relative;
+        padding: 50px;
+
+        h2 {
+            text-align: left;
+        }
+
+        .required {
+            color: $danger-color;
+            letter-spacing: 0.05em;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        ul {
+            li {
+                font-size: 1.5rem;
+                list-style: inside;
+            }
+        }
+
+        @media screen and (max-width: 1000px) {
+            padding: 0 5%;
+            padding-top: 20px;
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            ul {
+                li {
+                    font-size: 1.1rem;
+                }
+            }
+        }
+    }
+}

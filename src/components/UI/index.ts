@@ -7,3 +7,4 @@ export * from "./Notification";
 export * from "./Select";
 export * from "./Textarea";
 export * from "./Tooltip";
+export * from "./Carousel";

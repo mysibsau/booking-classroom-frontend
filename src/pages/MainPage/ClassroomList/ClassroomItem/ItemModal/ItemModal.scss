@@ -1,0 +1,153 @@
+@import "src/styles/variables";
+
+.itemModal-container {
+    min-width: 50vw;
+
+    .info-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        @media screen and (max-width: 1000px) {
+            grid-template-columns: 1fr;
+        }
+
+        .modal-photo-container {
+            img {
+                width: 100%;
+            }
+        }
+
+        .description-container {
+            padding: 10px 40px;
+
+            @media screen and (max-width: 1000px) {
+                padding: 0;
+                margin-top: 10px;
+            }
+
+            >* {
+                margin-bottom: 15px;
+            }
+
+            h3 {
+                font-style: italic;
+            }
+
+            span {
+                display: block;
+                margin-left: 10px;
+                margin-top: 10px;
+                color: gray;
+
+                @media screen and (max-width: 1000px) {
+                    margin-left: 0;
+                }
+            }
+
+            li {
+                list-style: disc inside;
+
+                span {
+                    display: inline-block;
+                    word-wrap: break-word;
+                }
+            }
+        }
+    }
+
+    .booking-form {
+        >h3 {
+            padding: 20px;
+            background-color: rgba($danger-color, 0.3);
+            border-radius: 16px;
+            color: $primary-color;
+            line-height: 130%;
+        }
+
+        form {
+            width: 70%;
+            margin: auto;
+            padding: 20px;
+            background: rgba(7, 59, 114, 0.1);
+            border-radius: $border-radius;
+
+            @media screen and (max-width: 1000px) {
+                grid-template-columns: 1fr;
+                width: 100%;
+            }
+
+            h3 {
+                font-family: 'Montserrat';
+                margin-bottom: 30px;
+            }
+
+            >div {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+
+                .description, .datePicker {
+                    grid-column-start: 1;
+                    grid-column-end: 3;
+                }
+
+                .datePicker {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+
+                    .dates,
+                    .datetime {
+                        display: grid;
+                        margin-bottom: 10px;
+
+                        >div {
+                            margin-right: 10px;
+
+                            &:last-child {
+                                margin: 0;
+                            }
+                        }
+                    }
+
+                    .dates {
+                        grid-template-columns: repeat(2, 1fr);
+                    }
+
+                    .datetime {
+                        grid-template-columns: repeat(3, 1fr);
+                    }
+
+                    .allDay-container {
+                        label {
+                            display: inline-block;
+                            margin-left: 5px;
+                            cursor: pointer;
+                        }
+                    }
+                }
+
+                @media screen and (max-width: 1000px) {
+                    grid-template-columns: 1fr;
+
+                    .description {
+                        grid-column-end: 2;
+                    }
+
+                    .datePicker {
+                        grid-column-end: 2;
+                    }
+                }
+
+                >div {
+                    margin: 5px;
+
+                    label {
+                        margin-bottom: 5px;
+                        display: inline-block;
+                    }
+                }
+            }
+        }
+    }
+}

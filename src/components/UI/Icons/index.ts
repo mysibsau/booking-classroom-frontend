@@ -12,7 +12,10 @@ export {
     IconUser,
     IconPen,
     IconArrowDown,
-    IconArrowUp
+    IconArrowUp,
+    IconShortLogo,
+    IconATelegramm,
+    IconAVk,
+    IconTelegramm,
+    IconVk
 } from "./Icons";
-
-export type {ColorTypes} from "./Icons";

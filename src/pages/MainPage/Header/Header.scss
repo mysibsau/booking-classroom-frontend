@@ -1,0 +1,47 @@
+.header-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .header-info {
+        width: 80%;
+        min-height: 60vh;
+
+        margin-top: 50px;
+
+        display: grid;
+        grid-template-columns: 2fr 3fr;
+        align-items: center;
+        padding: 40px;
+        border-radius: 16px;
+
+        @media screen and (max-width: 1000px) {
+            min-height: 0;
+            width: 90%;
+            grid-template-columns: 1fr;
+        }
+
+        img {
+            width: 100%;
+        }
+
+        p {
+            font-family: 'Oswald';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 3rem;
+            text-align: center;
+
+            color: #FFFFFF;
+
+            @media screen and (max-width: 800px) {
+                font-size: 1.5rem;
+            }
+
+            @media screen and (max-width: 1000px) {
+                font-size: 2rem;
+            }
+        }
+    }
+}

@@ -5,30 +5,27 @@
     padding: 11px 25px;
     line-height: 127.7%;
     border-radius: $border-radius;
-    border: 1px solid;
     position: relative;
     height: 45px;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
     font-size: 16px;
+    border: none;
 
     &.default {
         color: $primary-color;
         background-color: $base-color;
 
         &:hover {
-            border-color: $secondary-color;
             background-color: rgba($color: $secondary-color, $alpha: 0.4);
         }
     }
 
     &.primary {
         color: $base-color;
-        border-color: $base-color;
         background-color: $primary-color;
 
         &:hover {
-            border-color: $primary-color;
             background-color: rgba($color: $primary-color, $alpha: 0.8);
         }
     }
@@ -38,7 +35,6 @@
         background-color: $danger-color;
 
         &:hover {
-            border-color: $danger-color;
             background-color: rgba($color: $danger-color, $alpha: 0.8);
         }
     }
@@ -48,17 +44,15 @@
         background-color: $secondary-color;
 
         &:hover {
-            border-color: $secondary-color;
             background-color: rgba($color: $secondary-color, $alpha: 0.8);
         }
     }
 
-    &.success{
+    &.success {
         color: $base-color;
         background-color: $success-color;
 
         &:hover {
-            border-color: $success-color;
             background-color: rgba($color: $success-color, $alpha: 0.8);
         }
     }

@@ -1,18 +1,24 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import { Input } from "./components/UI";
+import Navbar from "./components/Navbar";
 import MainPage from "./pages/MainPage";
 import MyProfilePage from "./pages/MyProfilePage";
+import { useAuthStore } from "./stores";
 
 
 function App() {
 
+    const { user } = useAuthStore(state => state)
+
     return (
         <BrowserRouter>
             <>
+                <Navbar />
                 <Routes>
                     <Route path="/" element={<MainPage />} />
-                    <Route path="/my-profile" element={<MyProfilePage />} />
+                    {user &&
+                        <Route path="/my-profile" element={<MyProfilePage />} />
+                    }
                     <Route
                         path="*"
                         element={<Navigate to="/" replace />}

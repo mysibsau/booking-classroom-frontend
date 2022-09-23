@@ -1,0 +1,65 @@
+@import "src/styles/variables";
+
+.classroomList {
+    position: relative;
+    
+    .classroomList-container {
+        position: relative;
+
+        .filters {
+            width: 60%;
+            margin: auto;
+            margin-bottom: 20px;
+
+            padding: 20px;
+
+            @media screen and (max-width: 1200px) {
+                width: 100%;
+            }
+
+            .filters-container {
+                width: 100%;
+                padding: 10px;
+                background: $secondary-color;
+                backdrop-filter: blur(32px);
+                border-radius: 16px;
+
+                display: grid;
+                grid-template-columns: 2fr 1fr;
+
+                @media screen and (max-width: 800px) {
+                    grid-template-columns: 1fr;
+                }
+
+                .filters-left {
+                    padding: 10px;
+                }
+
+                .filters-right {
+                    padding: 10px;
+                }
+            }
+
+        }
+
+        .classroom-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+
+            width: 90%;
+            margin: auto;
+
+            @media screen and (max-width: 1500px) {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            @media screen and (max-width: 1000px) {
+                grid-template-columns: 1fr;
+            }
+        }
+    }
+
+    .pagination-container{
+        position: relative;
+    }
+}

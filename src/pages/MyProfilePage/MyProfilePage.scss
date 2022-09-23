@@ -1,0 +1,75 @@
+@import "src/styles/variables";
+
+.booking-container {
+    min-height: 100vh;
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+
+    padding-top: 20vh;
+
+    @media all and (max-width: 800px) {
+        padding-top: 30vh;
+    }
+
+    .bookingList-container {
+        position: relative;
+        margin: auto;
+        width: 80%;
+        min-height: 55vh;
+        padding: 20px 40px;
+        overflow-y: auto;
+
+        h1 {
+            position: relative;
+        }
+
+        .blur {
+            border-radius: $border-radius;
+        }
+
+        .booking-list {
+            position: relative;
+            display: grid;
+            grid-template-columns: repeat(3, 10fr) 1fr;
+            padding: 0 20px;
+
+            * {
+                text-align: center;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            &.header {
+                >* {
+                    font-size: 30px;
+                    color: white;
+                    margin-bottom: 20px;
+                    letter-spacing: 0.05em;
+                }
+
+                @media all and (max-width: 800px) {
+                    display: none;
+                }
+            }
+
+            @media all and (max-width: 800px) {
+                grid-template-columns: 1fr;
+
+                * {
+                    text-align: left;
+                    justify-content: flex-start;
+                    align-items: center;
+                }
+            }
+        }
+
+
+        @media all and (max-width: 800px) {
+            width: 100%;
+        }
+    }
+}
