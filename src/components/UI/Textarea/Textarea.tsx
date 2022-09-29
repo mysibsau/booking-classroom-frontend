@@ -7,18 +7,19 @@ interface IProps {
     maxLength?: number;
     placeholder?: string;
     required?: boolean;
+    rows?: number
 }
 
-const Textarea: React.FC<IProps> = ({ placeholder, value, onChange, maxLength, required }) => {
+const Textarea: React.FC<IProps> = ({ placeholder, value, onChange, maxLength, required, rows = 10 }) => {
     return (
         <div className={"myTextarea"}>
             <textarea
                 value={value}
                 onChange={(e: ChangeEvent<HTMLTextAreaElement>) => onChange(e.target.value)}
-                rows={10}
+                rows={rows}
                 placeholder={placeholder}
                 maxLength={maxLength}
-                required={required} 
+                required={required}
             />
             {maxLength
                 ? <span className={"textareaLength"}>

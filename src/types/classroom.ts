@@ -1,7 +1,8 @@
 export interface IBookingDates {
-    date: string;
-    start_time: string;
-    end_time: string;
+    date_start: string;
+    date_end: string;
+    start_time: string | null;
+    end_time: string | null;
 }
 
 interface IEquipment {
@@ -9,6 +10,7 @@ interface IEquipment {
     equipment: string;
     description: string;
     cound: number;
+    is_spec_equip: boolean;
 }
 
 interface IPhoto {
@@ -23,7 +25,7 @@ export interface IClassroom {
     address: string;
     capacity: number;
     equipment: IEquipment[];
-    booking_dates?: IBookingDates[];
+    bookings_in_room?: IBookingDates[];
     admin: string;
     admin_contact_info: string;
 }
@@ -37,13 +39,16 @@ export interface ICarousel {
 export interface IStaticData {
     carousel_photo: ICarousel[];
     spec_text: string;
+    title: string;
+    pseudo_text_booking: string;
+    pseudo_text_equipment: string;
 }
 
 export interface IClassroomStore {
     loading: boolean;
     count: number;
     classroomList: IClassroom[];
-    staticData?: IStaticData;
+    staticData: IStaticData;
     getClassroomList: (params?: Record<string, string | number>) => void;
     getStaticData: () => void;
 }

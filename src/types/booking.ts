@@ -10,11 +10,12 @@ export interface IRoom {
 }
 
 export interface ICreateBooking {
+    title: string;
     booking_date_time: IBookingDates[];
     contact_info: string;
     equipment: string;
     description: string;
-    personal_status: TUserStatus;
+    personal_status: number;
     position: string;
     room: string;
 }
@@ -27,7 +28,7 @@ export interface IMyBooking {
     description: string;
     status: TBookingStatus;
     comment: string;
-    personal_status: TUserStatus;
+    personal_status: number;
     position: string;
     room: IRoom;
 }
@@ -35,6 +36,7 @@ export interface IMyBooking {
 export interface IBookingStore {
     loading: boolean;
     bookingList?: IMyBooking[];
-    getBookingList: () => void;
+    count: number;
+    getBookingList: (params?: Record<string, string | number>) => void;
     createBooking: (data: ICreateBooking) => void;
 }

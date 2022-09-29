@@ -24,7 +24,7 @@ const Rules = () => {
             <div className="blur" />
             <div className={"rules-image-container"}>
                 {staticData &&
-                    <Carousel indicators timeInterval={1000000}>
+                    <Carousel indicators>
                         {staticData.carousel_photo.map((item, index) =>
                             <CarouselItem key={index}>
                                 <div className={"carouselItem-container"}>
@@ -43,11 +43,10 @@ const Rules = () => {
             </div>
             <div className={"rules-info"}>
                 <div className={"required"}>Обязательно ознакомиться</div>
-                <h2>{rules[0]}</h2>
+                <h2>{staticData?.title}</h2>
                 <ul>
                     {rules.map((item, index) =>
-                        index !== 0
-                        && <li>{item}</li>
+                        <li key={index}>{item}</li>
                     )}
                 </ul>
             </div>

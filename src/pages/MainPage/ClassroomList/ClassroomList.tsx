@@ -20,8 +20,8 @@ const ClassroomList = () => {
     const getClassroomListHandler = () => {
         const params = {
             page,
-            address,
-            page_size: 6
+            page_size: 6,
+            search: address
         }
         getClassroomList(params)
     }

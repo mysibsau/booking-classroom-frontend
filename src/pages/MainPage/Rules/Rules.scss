@@ -54,6 +54,10 @@
                 padding: 10px;
                 border-radius: 8px;
                 font-style: italic;
+                max-width: 90%;
+                overflow: hidden;
+                word-wrap: normal;
+                text-overflow: ellipsis;
             }
 
             .name {

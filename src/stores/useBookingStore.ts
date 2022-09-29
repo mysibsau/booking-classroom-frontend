@@ -8,9 +8,10 @@ import { IBookingStore } from "../types/booking";
 export const useBookingStore = create<IBookingStore>()(
     devtools(immer(
         (set, get) => ({
-            loading: false,
+            loading: true,
             bookingList: undefined,
-            getBookingList: async () => {
+            count: 0,
+            getBookingList: async (params) => {
                 const authStore = sessionStorage.getItem('authStore')
                 if (authStore) {
                     set(state => {
@@ -18,15 +19,17 @@ export const useBookingStore = create<IBookingStore>()(
                     })
                     const userToken = JSON.parse(authStore).state.user.token
 
-                    await axios.get("/bookings/my/",
+                    await axios.get("/booking/",
                         {
-                            headers: { Authorization: `Token ${userToken}` }
+                            headers: { Authorization: `Token ${userToken}` },
+                            params
                         }
                     ).then((response) => {
                         const data = response.data;
                         set((state) => {
                             state.loading = false;
-                            state.bookingList = data;
+                            state.bookingList = data.results;
+                            state.count = data.count;
                         });
                     }).catch((e: AxiosError) => {
                         const error = JSON.stringify(e);
@@ -37,10 +40,13 @@ export const useBookingStore = create<IBookingStore>()(
                 }
             },
             createBooking: async (data) => {
-                await axios.post("/bookings/", data,
-                    {
-                        headers: { Authorization: `Token 3a874ba2fcfaed9bc62b8b220e5ba32a8fbf9508` }
-                    })
+                const authStore = sessionStorage.getItem('authStore')
+                if (authStore) {
+                    await axios.post("/booking/create/", data,
+                        {
+                            headers: { Authorization: `Token 3a874ba2fcfaed9bc62b8b220e5ba32a8fbf9508` }
+                        })
+                }
             }
         })
     ))

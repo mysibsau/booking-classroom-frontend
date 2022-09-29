@@ -20,7 +20,7 @@ const BookingItem: React.FC<IProps> = ({ bookingItem }) => {
 
     const [equipments, setEquipments] = useState<string[]>([])
 
-    const iconSize = window.matchMedia('(max-width: 800px)').matches ? 22 : 30; 
+    const iconSize = window.matchMedia('(max-width: 800px)').matches ? 22 : 30;
 
     useEffect(() => {
         if (bookingItem.equipment) {
@@ -64,20 +64,10 @@ const BookingItem: React.FC<IProps> = ({ bookingItem }) => {
                                 {bookingItem.booking_date_time.length
                                     ? <ul>
                                         {bookingItem.booking_date_time.map((date, index) =>
-                                            <li key={index}>{new Date(date.date).toLocaleDateString()} с {date.start_time} по {date.end_time}</li>
-                                        )}
-                                    </ul>
-                                    : <></>
-                                }
-                            </div>
-                        </div>
-                        <div>
-                            <div>Забронированное оборудование:</div>
-                            <div>
-                                {equipments.length
-                                    ? <ul>
-                                        {equipments.map((item, index) =>
-                                            <li key={index}>{item}</li>
+                                            <li key={index}>{date.date_end
+                                                ? <>с {new Date(date.date_start).toLocaleDateString()} по {new Date(date.date_end).toLocaleDateString()}</>
+                                                : <>{new Date(date.date_start).toLocaleDateString()} с {date.start_time} по {date.end_time}</>
+                                            }</li>
                                         )}
                                     </ul>
                                     : <></>
@@ -88,6 +78,19 @@ const BookingItem: React.FC<IProps> = ({ bookingItem }) => {
                             <div>Контактная информация:</div>
                             <div>
                                 {bookingItem.contact_info}
+                            </div>
+                        </div>
+                        <div>
+                            <div>Забронированное дополнительное оборудование:</div>
+                            <div>
+                                {equipments.length
+                                    ? <ul>
+                                        {equipments.map((item, index) =>
+                                            <li key={index}>{item}</li>
+                                        )}
+                                    </ul>
+                                    : <></>
+                                }
                             </div>
                         </div>
                         <div>

@@ -11,23 +11,28 @@ interface IProps {
 
 const Modal: React.FC<IProps> = ({ title, children, isShow, setIsShow }) => {
     useEffect(() => {
-        document.body.style.overflow = isShow ? "hidden" : ""
+        document.body.style.overflow = isShow ? "hidden" : "visible"
     }, [isShow])
 
     return (
-        <div className={`modalContainer ${isShow ? "active" : ""}`}>
-            <div className={"modalContent"}>
-                {title && <div className={"modalTitle"}>{title}</div>}
+        <>
+            {isShow
+                ? <div className={`modalContainer ${isShow ? "active" : ""}`}>
+                    <div className={"modalContent"}>
+                        {title && <div className={"modalTitle"}>{title}</div>}
 
-                <div className={"close"} onClick={() => setIsShow(false)}>
-                    <IconCloseX color={"default"} size={25} />
-                </div>
+                        <div className={"close"} onClick={() => setIsShow(false)}>
+                            <IconCloseX color={"default"} size={25} />
+                        </div>
 
-                <div className={"modalBody"}>
-                    {children}
+                        <div className={"modalBody"}>
+                            {children}
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
+                : <></>
+            }
+        </>
     );
 };
 

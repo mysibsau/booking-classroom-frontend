@@ -1,19 +1,23 @@
-import React from 'react';
-import './Loader.scss'
+import React from 'react'
+import "./Loader.scss";
 
-interface IProps{
-    width: number;
-    height: number;
+const Loader = () => {
+    return (
+        <div className="loader-container">
+            <div className='loader-item'></div>
+            <div className='loader-item'></div>
+            <div className='loader-item'></div>
+            <div className='loader-item'></div>
+            <div className='loader-item'></div>
+            <div className='loader-item'></div>
+            <div className='loader-item'></div>
+            <div className='loader-item'></div>
+            <div className='loader-item'></div>
+            <div className='loader-item'></div>
+            <div className='loader-item'></div>
+            <div className='loader-item'></div>
+        </div>
+    )
 }
 
-const Loader:React.FC<IProps> = ({width, height}) => {
-    const loaderImg = require('./loader.png')
-
-    return (
-        <div className={'loader'}>
-            <img src={loaderImg} alt="" style={{width: width, height: height}}/>
-        </div>
-    );
-};
-
-export default Loader;
+export default Loader
