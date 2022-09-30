@@ -8,8 +8,9 @@ import 'react-day-picker/dist/style.css';
 
 import { IBookingDates, IClassroom } from '../../../../../../types/classroom';
 import { useAuthStore, useBookingStore, useClassroomStore } from '../../../../../../stores';
-import { Button, Input, Select, Textarea } from '../../../../../../components/UI';
+import { Button, Input, InputTime, Select, Textarea } from '../../../../../../components/UI';
 import { NavLink } from 'react-router-dom';
+import { getLockDates, getLockTimes } from './BookingFormHealper';
 
 const statusOpt = [
     { id: "0", name: "Студент" },
@@ -28,25 +29,48 @@ const BookingForm: React.FC<IProps> = ({ classroom, setLogInForm }) => {
 
     const [allDay, setAllDay] = useState(false);
 
-    const [contacts, setontacts] = useState("")
+    const [contacts, setContacts] = useState("")
     const [userPosition, setUserPosition] = useState("")
     const [userStatus, setUserStatus] = useState("0")
     const [description, setDescription] = useState("")
     const [name, setName] = useState("")
 
-    const [startTime, setStartTime] = useState("00:00");
-    const [endTime, setEndTime] = useState("23:59");
-
+    const [startTime, setStartTime] = useState("--:--");
+    const [endTime, setEndTime] = useState("--:--");
+    const [dateTimeLabel, setDateTimeLabel] = useState("")
+    const [freeTimes, setFreeTimes] = useState<string[]>()
+    const [freeTimesEnd, setFreeTimesEnd] = useState<string[]>([])
+    
     const [equipments, setEquipments] = useState("")
-
+    
+    const [hiddenDates, setHiddenDates] = useState<Date[]>()
     const [selectedDay, setSelectedDay] = useState<Date | undefined>();
     const [selectedManyDays, setSelectedManyDays] = useState<DateRange | undefined>();
-    const [dateTimeLabel, setDateTimeLabel] = useState("")
 
     const [showCalendar, setShowCalendar] = useState(false)
 
     const [bookingConfirm, setBookingConfirm] = useState(false)
 
+    const setDefaultState = () => {
+        setAllDay(false)
+        setContacts("")
+        setUserPosition("")
+        setUserStatus("0")
+        setDescription("")
+        setName("")
+        setStartTime("--:--")
+        setEndTime("--:--")
+        setDateTimeLabel("")
+        setFreeTimes(undefined)
+        setFreeTimesEnd([])
+        setEquipments("")
+        setHiddenDates(undefined)
+        setSelectedDay(undefined)
+        setSelectedManyDays(undefined)
+        setShowCalendar(false)
+
+        setBookingConfirm(true)
+    }
 
     const createBookingHandler = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -56,8 +80,8 @@ const BookingForm: React.FC<IProps> = ({ classroom, setLogInForm }) => {
             if (allDay) {
                 if (selectedManyDays && selectedManyDays.from && selectedManyDays.to) {
                     newBookingDates.push({
-                        date_start: selectedManyDays.from.toISOString().split("T")[0],
-                        date_end: selectedManyDays.to.toISOString().split("T")[0],
+                        date_start: new Date(selectedManyDays.from.getTime() + 1000 * 60 * 60 * 24).toISOString().split("T")[0],
+                        date_end: new Date(selectedManyDays.to.getTime() + 1000 * 60 * 60 * 24).toISOString().split("T")[0],
                         end_time: null,
                         start_time: null
                     })
@@ -65,13 +89,13 @@ const BookingForm: React.FC<IProps> = ({ classroom, setLogInForm }) => {
             } else {
                 if (selectedDay) {
                     newBookingDates.push({
-                        date_start: selectedDay.toISOString().split("T")[0],
-                        date_end: selectedDay.toISOString().split("T")[0],
+                        date_start: new Date(selectedDay.getTime() + 1000 * 60 * 60 * 24).toISOString().split("T")[0],
+                        date_end: new Date(selectedDay.getTime() + 1000 * 60 * 60 * 24).toISOString().split("T")[0],
                         end_time: endTime,
                         start_time: startTime
                     })
                 }
-            }
+            }            
 
             if (newBookingDates.length) {
                 createBooking(
@@ -86,29 +110,75 @@ const BookingForm: React.FC<IProps> = ({ classroom, setLogInForm }) => {
                         booking_date_time: newBookingDates
                     }
                 )
-                setBookingConfirm(false)
+                setDefaultState()
             }
         }
     }
 
     useEffect(() => {
-        let newLabel = ""
+        if (classroom.bookings_in_room) {
+            setHiddenDates(getLockDates(classroom.bookings_in_room))
+        }
+    }, [])
 
-        if (allDay) {
-            if (selectedManyDays && selectedManyDays.from) {
-                newLabel += "с " + selectedManyDays.from.toLocaleDateString()
-            }
-            if (selectedManyDays && selectedManyDays.to) {
-                newLabel += " по " + selectedManyDays.to.toLocaleDateString()
+    useEffect(() => {
+        if (classroom.bookings_in_room && selectedDay && freeTimes) {
+            const selectDay = new Date(selectedDay.getTime() + 1000 * 60 * 60 * 24).toISOString().split("T")[0]
+            const { lockTimes } = getLockTimes(classroom.bookings_in_room, selectDay)
+            const lockedTimes = lockTimes.filter(item => item > startTime)
+
+            if (lockedTimes.length) {
+                setFreeTimesEnd(freeTimes.filter(item => item > startTime && item <= lockedTimes[0]))
+            } else {
+                setFreeTimesEnd(freeTimes.filter(item => item > startTime))
             }
         } else {
-            if (selectedDay) {
+            setFreeTimesEnd([])
+        }
+        setEndTime("--:--")
+    }, [startTime])
+
+    useEffect(() => {
+        let newLabel = ""
+        let lockedDates = []
+
+        if (allDay) {
+            if (selectedManyDays && selectedManyDays.from && selectedManyDays.to && hiddenDates) {
+                lockedDates = getLockDates([{
+                    date_start: new Date(selectedManyDays.from.getTime() + 1000 * 60 * 60 * 24).toISOString().split("T")[0],
+                    date_end: new Date(selectedManyDays.to.getTime() + 1000 * 60 * 60 * 24).toISOString().split("T")[0],
+                    end_time: null,
+                    start_time: null
+                }]).map(item => new Date(item.setHours(0)).getTime());
+
+                console.log(lockedDates);
+
+                for (const item of lockedDates) {
+                    if (hiddenDates.map(item => new Date(item.setHours(0)).getTime()).includes(item)) {
+                        setSelectedManyDays({
+                            from: undefined,
+                            to: undefined
+                        })
+                        return
+                    }
+                }
+
+                newLabel += "с " + selectedManyDays.from.toLocaleDateString() + " по " + selectedManyDays.to.toLocaleDateString()
+            }
+
+        } else {
+            if (classroom.bookings_in_room && selectedDay) {
+                const selectDay = new Date(selectedDay.getTime() + 1000 * 60 * 60 * 24).toISOString().split("T")[0]
+                const { freeTimes } = getLockTimes(classroom.bookings_in_room, selectDay)
+
+                setFreeTimes(freeTimes)
+
                 newLabel += selectedDay.toLocaleDateString() + ` с ${startTime} по ${endTime}`
             }
         }
 
         setDateTimeLabel(newLabel)
-    }, [selectedDay, selectedManyDays, allDay])
+    }, [selectedDay, selectedManyDays, allDay, startTime, endTime])
 
     return (
         <>
@@ -133,7 +203,7 @@ const BookingForm: React.FC<IProps> = ({ classroom, setLogInForm }) => {
                                     </div>
                                     <div>
                                         <label>Укажите ваш номер телефона</label>
-                                        <Input value={contacts} onChange={setontacts} type={"text"} placeholder={"Ваш контактный телефон"} required />
+                                        <Input value={contacts} onChange={setContacts} type={"tel"} placeholder={"Ваш контактный телефон"} required />
                                     </div>
                                     <div>
                                         <label>
@@ -141,7 +211,6 @@ const BookingForm: React.FC<IProps> = ({ classroom, setLogInForm }) => {
                                                 ? <>Ваша группа</>
                                                 : <>Ваша должность</>
                                             }
-
                                         </label>
                                         <Input
                                             type={"text"}
@@ -154,7 +223,7 @@ const BookingForm: React.FC<IProps> = ({ classroom, setLogInForm }) => {
                                     {showCalendar && <div className={"close-day-picker-container"} onClick={() => setShowCalendar(false)}></div>}
                                     <div className={"datePicker"} onFocus={() => setShowCalendar(true)}>
                                         <label>Даты бронирования</label>
-                                        <Input type={"text"} value={dateTimeLabel} placeholder={"Укажите даты бронирования"} readonly />
+                                        <Input type={"text"} value={dateTimeLabel} placeholder={"Укажите даты бронирования"} required readonly />
                                         {showCalendar
                                             ? <div className={"day-picker-container"}>
                                                 {allDay
@@ -164,11 +233,13 @@ const BookingForm: React.FC<IProps> = ({ classroom, setLogInForm }) => {
                                                             mode={"range"}
                                                             selected={selectedManyDays}
                                                             onSelect={setSelectedManyDays}
+                                                            hidden={hiddenDates}
                                                         />
                                                         <div className="allDay-container">
                                                             <input type="checkbox" id={`allDayCheck-${classroom.id}`} checked={allDay} onChange={() => setAllDay(!allDay)} />
                                                             <label htmlFor={`allDayCheck-${classroom.id}`}>Весь день</label>
                                                         </div>
+                                                        <div>Применить</div>
                                                     </div>
                                                     : <div>
                                                         <DayPicker
@@ -176,16 +247,20 @@ const BookingForm: React.FC<IProps> = ({ classroom, setLogInForm }) => {
                                                             mode={"single"}
                                                             selected={selectedDay}
                                                             onSelect={setSelectedDay}
+                                                            hidden={hiddenDates}
                                                         />
 
                                                         <div className="allDay-container">
                                                             <input type="checkbox" id={`allDayCheck-${classroom.id}`} checked={allDay} onChange={() => setAllDay(!allDay)} />
                                                             <label htmlFor={`allDayCheck-${classroom.id}`}>Весь день</label>
                                                         </div>
-                                                        <div className="datetime">
-                                                            <Input type={"time"} value={startTime} onChange={setStartTime} />
-                                                            <Input type={"time"} value={endTime} onChange={setEndTime} />
-                                                        </div>
+                                                        {freeTimes &&
+                                                            <div className="datetime">
+                                                                <InputTime times={freeTimes} value={startTime} onChange={setStartTime} />
+                                                                <InputTime times={freeTimesEnd} value={endTime} onChange={setEndTime} />
+                                                            </div>
+                                                        }
+                                                        <div>Применить</div>
                                                     </div>
                                                 }
                                             </div>

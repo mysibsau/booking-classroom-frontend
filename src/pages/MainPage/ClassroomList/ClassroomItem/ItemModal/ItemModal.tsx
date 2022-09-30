@@ -37,9 +37,9 @@ const ItemModal: React.FC<IProps> = ({ classroom }) => {
                             <div>
                                 <h3>Оснащение:</h3>
                                 <ul>
-                                    {classroom.equipment.map(item =>
+                                    {classroom.equipment.map((item, index) =>
                                         !item.is_spec_equip &&
-                                        <li key={item.id}>
+                                        <li key={index}>
                                             <span>{item.cound} {item.equipment}, {item.description}</span>
                                         </li>
                                     )}
@@ -48,9 +48,9 @@ const ItemModal: React.FC<IProps> = ({ classroom }) => {
                             <div>
                                 <h3>Оснащение, требующее присутствие специалиста:</h3>
                                 <ul>
-                                    {classroom.equipment.map(item =>
+                                    {classroom.equipment.map((item, index) =>
                                         item.is_spec_equip &&
-                                        <li key={item.id}>
+                                        <li key={index}>
                                             <span>{item.cound} {item.equipment}, {item.description}</span>
                                         </li>
                                     )}

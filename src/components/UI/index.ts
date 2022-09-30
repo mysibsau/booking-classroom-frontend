@@ -8,3 +8,4 @@ export * from "./Select";
 export * from "./Textarea";
 export * from "./Tooltip";
 export * from "./Carousel";
+export * from "./InputTime";

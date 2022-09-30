@@ -3,7 +3,7 @@ import React, { ChangeEvent, useState, FocusEvent } from "react";
 import "./Input.scss";
 
 
-type TInput = "text" | "number" | "date" | "time" | "password" | "datetime-local"
+type TInput = "text" | "number" | "date" | "time" | "password" | "datetime-local" | "tel"
 
 interface IProps {
     type: TInput;
@@ -13,12 +13,10 @@ interface IProps {
     placeholder?: string;
     id?: string;
     required?: boolean;
-    readonly?: boolean
-    onClick?: () => void;
-    onFocus?: (val: boolean) => void;
+    readonly?: boolean;
 }
 
-const Input: React.FC<IProps> = ({ inputIcon, placeholder, type, id, value, onChange, onClick, onFocus, required, readonly }) => {
+const Input: React.FC<IProps> = ({ inputIcon, placeholder, type, id, value, onChange, required, readonly }) => {
     const [showPassword, setShowPassword] = useState(type === "password")
 
     return (
@@ -31,9 +29,7 @@ const Input: React.FC<IProps> = ({ inputIcon, placeholder, type, id, value, onCh
                 id={id}
                 required={required}
                 readOnly={readonly}
-                onClick={onClick}
-                onFocus={() => onFocus ? onFocus(true) : {}}
-                onBlur={() => onFocus ? onFocus(false) : {}}
+                step={3600}
             />
             {inputIcon
                 ? <span onClick={() => {

@@ -9,6 +9,7 @@ export const useBookingStore = create<IBookingStore>()(
     devtools(immer(
         (set, get) => ({
             loading: true,
+            isError: false,
             bookingList: undefined,
             count: 0,
             getBookingList: async (params) => {
@@ -35,12 +36,14 @@ export const useBookingStore = create<IBookingStore>()(
                         const error = JSON.stringify(e);
                         set((state) => {
                             state.loading = false;
+                            state.isError = true;
                         });
                     });
                 }
             },
             createBooking: async (data) => {
                 const authStore = sessionStorage.getItem('authStore')
+                
                 if (authStore) {
                     await axios.post("/booking/create/", data,
                         {

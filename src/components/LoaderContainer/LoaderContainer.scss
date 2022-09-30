@@ -8,4 +8,11 @@
     top: 0;
     left: 0;
     z-index: 9999;
+
+    >span{
+        position: relative;
+        color: white;
+        letter-spacing: 0.3rem;
+        font-size: 30px;
+    }
 }

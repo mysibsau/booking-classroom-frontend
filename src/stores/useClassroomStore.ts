@@ -17,6 +17,7 @@ export const useClassroomStore = create<IClassroomStore>()(
     devtools(immer(
         (set, get) => ({
             loading: true,
+            isError: false,
             classroomList: [],
             count: 0,
             staticData: defaultStaticData,
@@ -36,6 +37,7 @@ export const useClassroomStore = create<IClassroomStore>()(
                     const error = JSON.stringify(e);
                     set((state) => {
                         state.loading = false;
+                        state.isError = true;
                     });
                 });
             },
@@ -50,6 +52,7 @@ export const useClassroomStore = create<IClassroomStore>()(
                     const error = JSON.stringify(e);
                     set((state) => {
                         state.loading = false;
+                        state.isError = true;
                     });
                 });
             }

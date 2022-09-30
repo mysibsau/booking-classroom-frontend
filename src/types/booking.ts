@@ -35,6 +35,7 @@ export interface IMyBooking {
 
 export interface IBookingStore {
     loading: boolean;
+    isError: boolean;
     bookingList?: IMyBooking[];
     count: number;
     getBookingList: (params?: Record<string, string | number>) => void;

@@ -6,7 +6,6 @@ export interface IBookingDates {
 }
 
 interface IEquipment {
-    id: string;
     equipment: string;
     description: string;
     cound: number;
@@ -46,6 +45,7 @@ export interface IStaticData {
 
 export interface IClassroomStore {
     loading: boolean;
+    isError: boolean;
     count: number;
     classroomList: IClassroom[];
     staticData: IStaticData;
