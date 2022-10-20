@@ -45,10 +45,19 @@ export const useBookingStore = create<IBookingStore>()(
                 const authStore = sessionStorage.getItem('authStore')
                 
                 if (authStore) {
+                    set(state => {
+                        state.loading = true
+                    })
+                    const userToken = JSON.parse(authStore).state.user.token
+
                     await axios.post("/booking/create/", data,
                         {
-                            headers: { Authorization: `Token 3a874ba2fcfaed9bc62b8b220e5ba32a8fbf9508` }
-                        })
+                            headers: { Authorization: `Token ${userToken}` }
+                        }).then(() => 
+                            set(state => {
+                                state.loading = false
+                            })
+                        )
                 }
             }
         })

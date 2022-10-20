@@ -119,11 +119,14 @@
                     }
 
                     .allDay-container {
-                        cursor: pointer;
                         padding: 5px 30px;
 
-                        >*:last-child {
-                            margin-left: 10px;
+                        label {
+                            cursor: pointer;
+
+                            input {
+                                margin-right: 10px;
+                            }
                         }
                     }
                 }

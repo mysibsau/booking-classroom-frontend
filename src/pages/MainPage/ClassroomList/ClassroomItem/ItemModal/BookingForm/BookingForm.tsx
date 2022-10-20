@@ -40,9 +40,9 @@ const BookingForm: React.FC<IProps> = ({ classroom, setLogInForm }) => {
     const [dateTimeLabel, setDateTimeLabel] = useState("")
     const [freeTimes, setFreeTimes] = useState<string[]>()
     const [freeTimesEnd, setFreeTimesEnd] = useState<string[]>([])
-    
+
     const [equipments, setEquipments] = useState("")
-    
+
     const [hiddenDates, setHiddenDates] = useState<Date[]>()
     const [selectedDay, setSelectedDay] = useState<Date | undefined>();
     const [selectedManyDays, setSelectedManyDays] = useState<DateRange | undefined>();
@@ -95,7 +95,7 @@ const BookingForm: React.FC<IProps> = ({ classroom, setLogInForm }) => {
                         start_time: startTime
                     })
                 }
-            }            
+            }
 
             if (newBookingDates.length) {
                 createBooking(
@@ -199,7 +199,7 @@ const BookingForm: React.FC<IProps> = ({ classroom, setLogInForm }) => {
                                     </div>
                                     <div className={"description"}>
                                         <label>Дополнительное оборудование</label>
-                                        <Textarea value={description} onChange={setDescription} placeholder={staticData.pseudo_text_equipment} required rows={5} />
+                                        <Textarea value={description} onChange={setDescription} placeholder={staticData.pseudo_text_equipment} rows={5} />
                                     </div>
                                     <div>
                                         <label>Укажите ваш номер телефона</label>
@@ -236,8 +236,10 @@ const BookingForm: React.FC<IProps> = ({ classroom, setLogInForm }) => {
                                                             hidden={hiddenDates}
                                                         />
                                                         <div className="allDay-container">
-                                                            <input type="checkbox" id={`allDayCheck-${classroom.id}`} checked={allDay} onChange={() => setAllDay(!allDay)} />
-                                                            <label htmlFor={`allDayCheck-${classroom.id}`}>Весь день</label>
+                                                            <label htmlFor={`allDayCheck-${classroom.id}`}>
+                                                                <input type="checkbox" id={`allDayCheck-${classroom.id}`} checked={allDay} onChange={() => setAllDay(!allDay)} />
+                                                                Весь день
+                                                            </label>
                                                         </div>
                                                         <div>Применить</div>
                                                     </div>
@@ -251,8 +253,10 @@ const BookingForm: React.FC<IProps> = ({ classroom, setLogInForm }) => {
                                                         />
 
                                                         <div className="allDay-container">
-                                                            <input type="checkbox" id={`allDayCheck-${classroom.id}`} checked={allDay} onChange={() => setAllDay(!allDay)} />
-                                                            <label htmlFor={`allDayCheck-${classroom.id}`}>Весь день</label>
+                                                            <label htmlFor={`allDayCheck-${classroom.id}`}>
+                                                                <input type="checkbox" id={`allDayCheck-${classroom.id}`} checked={allDay} onChange={() => setAllDay(!allDay)} />
+                                                                Весь день
+                                                            </label>
                                                         </div>
                                                         {freeTimes &&
                                                             <div className="datetime">

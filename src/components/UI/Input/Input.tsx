@@ -17,7 +17,7 @@ interface IProps {
 }
 
 const Input: React.FC<IProps> = ({ inputIcon, placeholder, type, id, value, onChange, required, readonly }) => {
-    const [showPassword, setShowPassword] = useState(type === "password")
+    const [showPassword, setShowPassword] = useState(false)
 
     return (
         <div className={`input-container ${inputIcon && "icon"}`}>
@@ -32,7 +32,7 @@ const Input: React.FC<IProps> = ({ inputIcon, placeholder, type, id, value, onCh
                 step={3600}
             />
             {inputIcon
-                ? <span onClick={() => {
+                ? <span style={{cursor: type==="password" ? "pointer" : "auto"}} onClick={() => {
                     if (type === "password") {
                         setShowPassword(!showPassword)
                     }

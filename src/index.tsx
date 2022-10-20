@@ -5,7 +5,7 @@ import App from "./App";
 import axios from "axios";
 
 
-axios.defaults.baseURL = process.env.REACT_APP_API_HEROCU_URL;
+axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 
 const root = ReactDOM.createRoot(
     document.getElementById("root") as HTMLElement

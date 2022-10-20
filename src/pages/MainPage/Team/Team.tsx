@@ -2,7 +2,11 @@ import React from 'react'
 import "./Team.scss";
 
 const Team = () => {
-    const image1 = require("../../../assets/me.jpg");
+    const Oleg = require("../../../assets/Team/Oleg.jpeg");
+    const Ivan = require("../../../assets/Team/Ivan.jpeg");
+    const Anastasiya = require("../../../assets/Team/Anastasiya.jpeg");
+    const Ilya = require("../../../assets/Team/Ilya.jpeg");
+    
     const background = require("../../../assets/background.png")
 
     return (
@@ -11,7 +15,7 @@ const Team = () => {
             <div className={"team-list-container"}>
                 <div className="team-list-item">
                     <div className={"image-container"}>
-                        <img src={image1} alt="" />
+                        <img src={Oleg} alt="" />
                     </div>
                     <div className={"info-container"}>
                         <div>Капитанов Олег</div>
@@ -20,28 +24,28 @@ const Team = () => {
                 </div>
                 <div className="team-list-item">
                     <div className={"image-container"}>
-                        <img src={image1} alt="" />
+                        <img src={Ivan} alt="" />
                     </div>
                     <div className={"info-container"}>
-                        <div>Капитанов Олег</div>
+                        <div>Жданов Иван</div>
                         <div>Backend разработчик</div>
                     </div>
                 </div>
                 <div className="team-list-item">
                     <div className={"image-container"}>
-                        <img src={image1} alt="" />
+                        <img src={Anastasiya} alt="" />
                     </div>
                     <div className={"info-container"}>
-                        <div>Капитанов Олег</div>
+                        <div>Апанасова Анастасия</div>
                         <div>Дизайнер</div>
                     </div>
                 </div>
                 <div className="team-list-item">
                     <div className={"image-container"}>
-                        <img src={image1} alt="" />
+                        <img src={Ilya} alt="" />
                     </div>
                     <div className={"info-container"}>
-                        <div>Капитанов Олег</div>
+                        <div>Скоробогатов Илья</div>
                         <div>Project manager</div>
                     </div>
                 </div>
