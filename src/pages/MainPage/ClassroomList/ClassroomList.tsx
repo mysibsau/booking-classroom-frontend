@@ -37,7 +37,6 @@ const ClassroomList = () => {
                             <Input value={address} onChange={setAddress} type={"text"} placeholder={"Введите название аудитории"} />
                         </div>
                         <div className={"filters-right"}>
-                            {/* <Select options={opt} setValue={setIds} value={ids} /> */}
                             <Button variant={"primary"} onClick={getClassroomListHandler}>Найти</Button>
                         </div>
                     </div>

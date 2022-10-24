@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useAuthStore } from '../../stores';
 import AuthForm from '../AuthForm';
 import { Button, IconLock, IconLogo, IconUser, Input, Loader, Modal } from '../UI';
@@ -24,10 +24,10 @@ const Navbar = () => {
                 {user
                     ? <div className={"navbar-center"}>
                         <span>
-                            <Link to={"/"}><span className={"name"}>Главная</span></Link>
+                            <NavLink to={"/"}><span className={"name"}>Главная</span></NavLink>
                         </span>
                         <span>
-                            <Link to={"/my-profile"}><span className={"name"}>Мои заявки</span></Link>
+                            <NavLink to={"/my-profile"}><span className={"name"}>Мои заявки</span></NavLink>
                         </span>
                     </div>
                     : <></>
@@ -37,7 +37,7 @@ const Navbar = () => {
                         ? <div>
                             <div className={'userInfo'}>
                                 <div className="blur"></div>
-                                <Link to={"/my-profile"}><span className={"name"}>{user.name}</span></Link>
+                                <NavLink to={"/my-profile"}><span className={"name"}>{user.name}</span></NavLink>
                             </div>
                             <div className={"buttons-container"}>
                                 <Button onClick={() => clickBtnLogout()} variant={"primary"}>Выйти</Button>

@@ -72,7 +72,7 @@ const Carousel: React.FC<ICarouselProps> = ({ children, indicators, playOnHover,
                     return React.cloneElement(child, { width: "100%" })
                 })}
             </div>
-            {indicators
+            {indicators && React.Children.map(children, item => item).length > 1
                 ?
                 <div className={"indicators"}>
                     <div className={"indicators-container"}>

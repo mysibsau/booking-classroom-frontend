@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Carousel, CarouselItem } from '../../../../../components/UI';
 import { useAuthStore } from '../../../../../stores';
 import { IClassroom } from '../../../../../types/classroom'
@@ -8,12 +8,21 @@ import AuthForm from '../../../../../components/AuthForm';
 
 interface IProps {
     classroom: IClassroom;
+    setTitle: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const ItemModal: React.FC<IProps> = ({ classroom }) => {
+const ItemModal: React.FC<IProps> = ({ classroom, setTitle }) => {
     const { user } = useAuthStore(state => state)
 
     const [logInForm, setLogInForm] = useState(false)
+
+    useEffect(() => {
+        if (logInForm) {
+            setTitle("")
+        } else {
+            setTitle(`Аудитория: ${classroom.address}`)
+        }
+    }, [logInForm])
 
     return (
         <>

@@ -64,9 +64,9 @@ const BookingItem: React.FC<IProps> = ({ bookingItem }) => {
                                 {bookingItem.booking_date_time.length
                                     ? <ul>
                                         {bookingItem.booking_date_time.map((date, index) =>
-                                            <li key={index}>{date.date_end
-                                                ? <>с {new Date(date.date_start).toLocaleDateString()} по {new Date(date.date_end).toLocaleDateString()}</>
-                                                : <>{new Date(date.date_start).toLocaleDateString()} с {date.start_time} по {date.end_time}</>
+                                            <li key={index}>{date.date_end === date.date_start
+                                                ? <>{new Date(date.date_start).toLocaleDateString()} с {date.start_time} по {date.end_time}</>
+                                                : <>с {new Date(date.date_start).toLocaleDateString()} по {new Date(date.date_end).toLocaleDateString()}</>
                                             }</li>
                                         )}
                                     </ul>

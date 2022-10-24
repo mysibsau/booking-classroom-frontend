@@ -11,6 +11,7 @@ interface IProps {
 
 const ClassroomItem: React.FC<IProps> = ({ classroom }) => {
     const [showModal, setShowModal] = useState(false)
+    const [title, setTitle] = useState(`Аудитория: ${classroom.address}`)
 
     return (
         <div className={"classroomItem-container"}>
@@ -31,8 +32,8 @@ const ClassroomItem: React.FC<IProps> = ({ classroom }) => {
             <div className={"button"}>
                 <Button variant={"primary"} onClick={() => setShowModal(true)}>Подробнее</Button>
             </div>
-            <Modal isShow={showModal} setIsShow={setShowModal} title={`Аудитория: ${classroom.address}`} >
-                <ItemModal classroom={classroom} />
+            <Modal isShow={showModal} setIsShow={setShowModal} title={title} >
+                <ItemModal classroom={classroom} setTitle={setTitle} />
             </Modal>
         </div>
     )

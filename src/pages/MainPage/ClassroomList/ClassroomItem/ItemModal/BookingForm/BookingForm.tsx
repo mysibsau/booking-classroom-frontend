@@ -9,7 +9,7 @@ import 'react-day-picker/dist/style.css';
 import { IBookingDates, IClassroom } from '../../../../../../types/classroom';
 import { useAuthStore, useBookingStore, useClassroomStore } from '../../../../../../stores';
 import { Button, Input, InputTime, Select, Textarea } from '../../../../../../components/UI';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { getLockDates, getLockTimes } from './BookingFormHealper';
 
 const statusOpt = [
@@ -151,8 +151,6 @@ const BookingForm: React.FC<IProps> = ({ classroom, setLogInForm }) => {
                     start_time: null
                 }]).map(item => new Date(item.setHours(0)).getTime());
 
-                console.log(lockedDates);
-
                 for (const item of lockedDates) {
                     if (hiddenDates.map(item => new Date(item.setHours(0)).getTime()).includes(item)) {
                         setSelectedManyDays({
@@ -291,10 +289,9 @@ const BookingForm: React.FC<IProps> = ({ classroom, setLogInForm }) => {
                     </div>
                 </>
                 : <h1 className={"confirm-message"}>
-                    Заявка отправлена! Вы можете отслеживать статус заявки на странице <NavLink to={"/my-profile/"}>Мои заявки</NavLink>
+                    Заявка отправлена! Вы можете отслеживать статус заявки на странице <Link to={"/my-profile"}>Мои заявки</Link>
                 </h1>
             }
-
         </>
 
     )
