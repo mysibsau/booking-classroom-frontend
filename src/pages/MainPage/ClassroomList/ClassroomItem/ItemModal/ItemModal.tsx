@@ -16,6 +16,9 @@ const ItemModal: React.FC<IProps> = ({ classroom, setTitle }) => {
 
     const [logInForm, setLogInForm] = useState(false)
 
+    const specEquipnemt = classroom.equipment.filter(item => item.is_spec_equip)
+    const equipment = classroom.equipment.filter(item => !item.is_spec_equip)
+
     useEffect(() => {
         if (logInForm) {
             setTitle("")
@@ -43,28 +46,31 @@ const ItemModal: React.FC<IProps> = ({ classroom, setTitle }) => {
                                 <h3>Вместимость:</h3>
                                 <span>Данная аудитория подходит для размещения до {classroom.capacity} человек.</span>
                             </div>
-                            <div>
-                                <h3>Оснащение:</h3>
-                                <ul>
-                                    {classroom.equipment.map((item, index) =>
-                                        !item.is_spec_equip &&
-                                        <li key={index}>
-                                            <span>{item.cound} {item.equipment}, {item.description}</span>
-                                        </li>
-                                    )}
-                                </ul>
-                            </div>
-                            <div>
-                                <h3>Оснащение, требующее присутствие специалиста:</h3>
-                                <ul>
-                                    {classroom.equipment.map((item, index) =>
-                                        item.is_spec_equip &&
-                                        <li key={index}>
-                                            <span>{item.cound} {item.equipment}, {item.description}</span>
-                                        </li>
-                                    )}
-                                </ul>
-                            </div>
+                            {equipment.length
+                                ? <div>
+                                    <h3>Оснащение:</h3>
+                                    <ul>
+                                        {equipment.map((item, index) =>
+                                            <li key={index}>
+                                                <span>{index + 1}. {item.cound} {item.equipment} {item.description}</span>
+                                            </li>
+                                        )}
+                                    </ul>
+                                </div>
+                                : null
+                            }
+                            {specEquipnemt.length
+                                ? <div>
+                                    <h3>Оснащение, требующее присутствие специалиста:</h3>
+                                    <ul>
+                                        {specEquipnemt.map((item, index) =>
+                                            <li key={index}>
+                                                <span>{index + 1}. {item.cound} {item.equipment} {item.description}</span>
+                                            </li>
+                                        )}
+                                    </ul>
+                                </div>
+                                : null}
                             <div>
                                 <h3>Описание:</h3>
                                 <span>{classroom.description}</span>
@@ -72,7 +78,12 @@ const ItemModal: React.FC<IProps> = ({ classroom, setTitle }) => {
                             {user
                                 ? <div>
                                     <h3>Контакты администратора:</h3>
-                                    <span>{classroom.admin}, {classroom.admin_contact_info}</span>
+                                    <span>{classroom.admin}
+                                        {classroom.admin_contact_info
+                                            ? <>, {classroom.admin_contact_info}</>
+                                            : null
+                                        }
+                                    </span>
                                 </div>
                                 : <></>
                             }

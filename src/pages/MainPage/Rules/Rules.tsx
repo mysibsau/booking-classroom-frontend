@@ -46,7 +46,9 @@ const Rules = () => {
                 <h2>{staticData?.title}</h2>
                 <ul>
                     {rules.map((item, index) =>
-                        <li key={index}>{item}</li>
+                        item[0] !== "*"
+                        ? <li key={index}>{item}</li>
+                        : <span className='additionally'>{item}</span>
                     )}
                 </ul>
             </div>

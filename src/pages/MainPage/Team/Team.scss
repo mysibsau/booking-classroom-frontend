@@ -15,18 +15,18 @@
                 display: flex;
                 justify-content: center;
                 position: relative;
-                height: 330px;
+                height: 260px;
 
                 img {
                     position: relative;
                     border-radius: 50%;
-                    width: 300px;
-                    height: 300px;
+                    width: 230px;
+                    height: 230px;
                     transition: all 0.3s ease;
 
                     &:hover {
-                        width: 320px;
-                        height: 320px;
+                        width: 250px;
+                        height: 250px;
                     }
 
                     @media screen and (max-width: 600px) {
