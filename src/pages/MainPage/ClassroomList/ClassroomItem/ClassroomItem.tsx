@@ -28,7 +28,7 @@ const ClassroomItem: React.FC<IProps> = ({ classroom }) => {
             </div>
             <div className={"info-container"}>
                 <div className={"addres"}>{classroom.address}</div>
-                <div className={"capacity"}>Кабинет на {classroom.capacity}&nbsp;
+                <div className={"capacity"}>Пространство на {classroom.capacity}&nbsp;
                     {declensionList.includes(classroom.capacity % 10) ? <>человека</> : <>человек</>}
                 </div>
                 <div className={"description"}>{classroom.description}</div>

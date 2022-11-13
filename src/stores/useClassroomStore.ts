@@ -1,6 +1,5 @@
 import create from "zustand";
 import { immer } from "zustand/middleware/immer";
-import { devtools } from 'zustand/middleware'
 import axios, { AxiosError } from "axios";
 import { IClassroomStore } from "../types/classroom";
 
@@ -14,7 +13,7 @@ const defaultStaticData = {
 }
 
 export const useClassroomStore = create<IClassroomStore>()(
-    devtools(immer(
+    immer(
         (set, get) => ({
             loading: true,
             isError: false,
@@ -57,5 +56,5 @@ export const useClassroomStore = create<IClassroomStore>()(
                 });
             }
         })
-    ))
+    )
 );

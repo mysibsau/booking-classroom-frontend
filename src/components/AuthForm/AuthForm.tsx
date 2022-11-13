@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useAuthStore } from '../../stores';
-import { Button, IconLock, IconUser, Input, Loader, Modal } from '../UI';
+import { Button, IconLock, IconUser, Input, Loader } from '../UI';
 import "./AuthForm.scss";
 
 
@@ -33,6 +33,7 @@ const AuthForm: React.FC<IProps> = ({ setLogInForm }) => {
                         value={login}
                         onChange={(value) => setLogin(value)}
                         id='login'
+                        name='login'
                         required
                     />
                     <Input
@@ -42,6 +43,7 @@ const AuthForm: React.FC<IProps> = ({ setLogInForm }) => {
                         type="password"
                         placeholder='Введите ваш пароль'
                         id='password'
+                        name='password'
                         required
                     />
                     <Button variant={!loading ? "primary" : "disabled"}>

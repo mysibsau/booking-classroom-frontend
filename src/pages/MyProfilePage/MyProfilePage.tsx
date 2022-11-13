@@ -25,7 +25,7 @@ const MyProfilePage = () => {
 
     return (
         <main>
-            {loading && <LoaderContainer />}
+            {/* {loading && <LoaderContainer />} */}
             {isError && <LoaderContainer isErrror />}
             <section className={"booking-container"} style={{ backgroundImage: `url(${background})` }}>
                 <div className={"bookingList-container"}>

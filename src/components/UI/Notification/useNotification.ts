@@ -2,48 +2,48 @@ import create from "zustand";
 import { immer } from "zustand/middleware/immer";
 import {v4 as uuidv4} from "uuid";
 
-type TPosition = "top-right" | "top-left" | "bottom-left" | "bottom-right"
+export type TPosition = "top-right" | "top-left" | "bottom-left" | "bottom-right"
 export type TNotification = "success" | "danger"
 
 export interface INotification {
     id: string;
     title: string;
-    description: string;
+    body: string;
     type: TNotification;
+    autoDelete: boolean;
+    autoDeleteTime: number;
+}
+
+interface IAddNotific {
+    title: string;
+    body: string;
+    type: TNotification;
+    autoDelete?: boolean;
+    autoDeleteTime?: number;
 }
 
 interface INotificationStore {
-    position: TPosition;
-    autoDelete: boolean;
-    autoDeleteTime: number;
-    toastList: Array<INotification>;
-    deleteToast: (id: string) => void;
-    addNotification: (
-        title: string,
-        description: string,
-        type: TNotification
-    ) => void;
+    notificList: Array<INotification>;
+    deleteNotific: (id: string) => void;
+    addNotific: (data: IAddNotific) => void;
 }
 
 export const useNotification = create(immer<INotificationStore>(((set, get) => ({
-    autoDelete: true,
-    autoDeleteTime: 5000,
-    position: "bottom-right",
-    toastList: [],
-    deleteToast: (id) => {
+    notificList: [],
+    deleteNotific: (id) => {
         set((state) => ({
-            toastList: [...state.toastList.filter(item => item.id !== id)]
+            notificList: [...state.notificList.filter(item => item.id !== id)]
         }));
     },
-    addNotification: (title, direction, type) => {
-        const newToast = {
+    addNotific: (data) => {
+        const newNotific = {
             id: uuidv4(),
-            title: title,
-            description: direction,
-            type: type
+            autoDelete: true,
+            autoDeleteTime: 5000,
+            ...data
         };
         set((state) => ({
-            toastList: [...state.toastList, newToast]
+            notificList: [...state.notificList, newNotific]
         }));
     }
 }))));

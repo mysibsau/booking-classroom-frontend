@@ -1,60 +1,45 @@
 import create from "zustand";
 import { immer } from "zustand/middleware/immer";
-import { devtools, persist } from 'zustand/middleware'
 import axios, { AxiosError } from "axios";
-import { IAuth, IAuthStore } from "../types/auth";
+import { IAuthStore } from "../types/auth";
 
 const user = sessionStorage.getItem('authStore')
 const foundUser = user ? JSON.parse(user).user : undefined
 
-const defaultState: IAuth = {
-    token: '',
-    name: 'Oleg',
-    id: 0,
-    password: "",
-    username: "",
-    ...foundUser
-}
-
 export const useAuthStore = create<IAuthStore>()(
-    devtools(immer(persist(
+    immer(
         (set, get) => ({
             loading: false,
             user: foundUser ? foundUser : undefined,
+            error: undefined,
+            setLogIn: (data) => {
+                set({
+                    user: data
+                })
+            },
             logIn: async (username, password) => {
                 set({
+                    error: undefined,
                     loading: true
                 })
                 await axios.post('/auth/', { username: username, password: password })
                     .then((responce) => {
                         const data = responce.data
                         set(state => {
-                            state.user = data 
-                            state.loading = false
+                            state.user = data
                         })
 
                     })
                     .catch((e: AxiosError) => {
                         set({
+                            error: "Неверный логин или пароль"
+                        })
+                    })
+                    .finally(() => {
+                        set({
                             loading: false
                         })
                     })
-
-                // await axios.get('/auth/')
-                //     .then((responce) => {
-                //         const data = responce.data
-                //         set(state => {
-                //             state.user = data;
-                //             state.loading = false;
-                //         })
-
-                //     })
-                //     .catch((e: AxiosError) => {
-                //         set(state => {
-                //             state.loading = false;
-                //             state.user = defaultState;
-                //         })
-                //     })
             },
             logOut: () => {
                 set({
@@ -62,10 +47,6 @@ export const useAuthStore = create<IAuthStore>()(
                 })
                 sessionStorage.clear()
             }
-        }),
-        {
-            name: "authStore",
-            getStorage: () => sessionStorage
-        }
-    )))
+        })
+    )
 );

@@ -1,18 +1,22 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import useCookie from '../../hooks/useCookie';
 import { useAuthStore } from '../../stores';
 import AuthForm from '../AuthForm';
-import { Button, IconLock, IconLogo, IconUser, Input, Loader, Modal } from '../UI';
+import { Button, IconLogo, Modal } from '../UI';
 import './Navbar.scss'
 
 const Navbar = () => {
     const { logOut, user } = useAuthStore(state => state);
+    const { removeCookie } = useCookie()
+
     const [logInForm, setLogInForm] = useState(false)
 
     const clickBtnLogout = () => {
+        removeCookie("user")
         logOut()
-        window.location.reload()
     }
+
     return (
         <div className={'navbar'}>
             <nav>
@@ -54,7 +58,7 @@ const Navbar = () => {
             <Modal isShow={logInForm} setIsShow={setLogInForm}>
                 <AuthForm setLogInForm={setLogInForm} />
             </Modal>
-        </div>
+        </div >
     );
 };
 

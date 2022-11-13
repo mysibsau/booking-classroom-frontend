@@ -1,12 +1,11 @@
 import create from "zustand";
 import { immer } from "zustand/middleware/immer";
-import { devtools } from 'zustand/middleware'
 import axios, { AxiosError } from "axios";
 import { IBookingStore } from "../types/booking";
 
 
 export const useBookingStore = create<IBookingStore>()(
-    devtools(immer(
+    immer(
         (set, get) => ({
             loading: true,
             isError: false,
@@ -43,7 +42,7 @@ export const useBookingStore = create<IBookingStore>()(
             },
             createBooking: async (data) => {
                 const authStore = sessionStorage.getItem('authStore')
-                
+
                 if (authStore) {
                     set(state => {
                         state.loading = true
@@ -53,7 +52,7 @@ export const useBookingStore = create<IBookingStore>()(
                     await axios.post("/booking/create/", data,
                         {
                             headers: { Authorization: `Token ${userToken}` }
-                        }).then(() => 
+                        }).then(() =>
                             set(state => {
                                 state.loading = false
                             })
@@ -61,5 +60,5 @@ export const useBookingStore = create<IBookingStore>()(
                 }
             }
         })
-    ))
+    )
 );

@@ -51,6 +51,12 @@
                     letter-spacing: 0.05em;
                 }
 
+                @media all and (max-width: 1000px) {
+                    >* {
+                        font-size: 20px;
+                    }
+                }
+
                 @media all and (max-width: 800px) {
                     display: none;
                 }

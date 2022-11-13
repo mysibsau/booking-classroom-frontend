@@ -48,7 +48,7 @@ const Rules = () => {
                     {rules.map((item, index) =>
                         item[0] !== "*"
                         ? <li key={index}>{item}</li>
-                        : <span className='additionally'>{item}</span>
+                        : <span className='additionally' key={index}>{item}</span>
                     )}
                 </ul>
             </div>

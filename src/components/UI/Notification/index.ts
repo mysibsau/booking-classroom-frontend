@@ -1,1 +1,2 @@
-export { default, AddToast } from "./Notification";
+export {default as NotificationContainer} from "./Notification";
+export * from "./useNotification";
