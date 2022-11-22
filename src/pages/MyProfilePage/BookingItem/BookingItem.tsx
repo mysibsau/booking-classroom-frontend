@@ -53,7 +53,7 @@ const BookingItem: React.FC<IProps> = ({ bookingItem }) => {
                 ? <div className={"description"}>
                     <div className={"main-info-container"}>
                         <div className={"info-name"}>
-                            <div>Цель бронирования:</div>
+                            <div>Описание мероприятия:</div>
                             <div>
                                 {bookingItem.description}
                             </div>

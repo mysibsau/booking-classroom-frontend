@@ -6,11 +6,9 @@ const Team = () => {
     const Ivan = require("../../../assets/Team/Ivan.jpeg");
     const Anastasiya = require("../../../assets/Team/Anastasiya.jpeg");
     const Ilya = require("../../../assets/Team/Ilya.jpeg");
-    
-    const background = require("../../../assets/background.png")
 
     return (
-        <section className={"team-container"} style={{ backgroundImage: `url(${background})` }}>
+        <section className={"team-container"}>
             <h2>Команда разработчиков</h2>
             <div className={"team-list-container"}>
                 <div className="team-list-item">

@@ -24,8 +24,8 @@ const Footer = () => {
                         </li>
                     </ul>
                     <ul>
-                        <li>Приемная ректора: <a href="phone:+73912640014">+7 (391) 264-00-14</a></li>
-                        <li>Приемная комиссия:<a href="phone:+73912629596">+7 (391) 262-95-96</a></li>
+                        <li>По вопросам бронирования: <a href="phone:+79138302400">+7 (913) 830-24-00</a></li>
+                        <li>По вопросам администрирования: <a href="phone:+73912227323">+7 (391) 222-73-23</a></li>
                         <li>Факс: <a href="phone:+79312644709">+7 (391) 264-47-09</a></li>
                         <li>E-mail: <a href="email:info@sibsau.tu">info@sibsau.ru</a></li>
                     </ul>
@@ -34,12 +34,12 @@ const Footer = () => {
             <div className={"messangers"}>
                 <h3>Социальные сети</h3>
                 <div className={"messangers-container"}>
-                    <Link to={"https://vk.com/sibgu_ru"} target="_blank"><IconVk size={imgSize}/></Link>
-                    <Link to={"https://t.me/reshetnevuniversity"} target="_blank"><IconTelegramm size={imgSize} /></Link>
-                    <Link to={"https://ok.ru/reshetnevuniversity"} target="_blank"><img src={ok} width={imgSize} /></Link>
-                    <Link to={"https://rutube.ru/channel/25502476/"} target="_blank"><img src={rutube} width={imgSize} /></Link>
-                    <Link to={"https://t.me/reshu_ru"} target="_blank"><IconATelegramm  size={imgSize}/></Link>
-                    <Link to={"https://vk.com/reshu_ru"} target="_blank"><IconAVk size={imgSize} /></Link>
+                    <a href={"https://vk.com/sibgu_ru"} target="_blank"><IconVk size={imgSize}/></a>
+                    <a href={"https://t.me/reshetnevuniversity"} target="_blank"><IconTelegramm size={imgSize} /></a>
+                    <a href={"https://ok.ru/reshetnevuniversity"} target="_blank"><img src={ok} width={imgSize} /></a>
+                    <a href={"https://rutube.ru/channel/25502476/"} target="_blank"><img src={rutube} width={imgSize} /></a>
+                    <a href={"https://t.me/reshu_ru"} target="_blank"><IconATelegramm  size={imgSize}/></a>
+                    <a href={"https://vk.com/reshu_ru"} target="_blank"><IconAVk size={imgSize} /></a>
                 </div>
             </div>
         </section>

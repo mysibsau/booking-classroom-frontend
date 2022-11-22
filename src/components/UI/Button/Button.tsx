@@ -22,9 +22,11 @@ interface IProps {
 
 const Button:React.FC<IProps> = ({id, variant = "default", onClick, children}) => {
     return (
-        <button onClick={onClick} id={id} className={`myButton ${variants.get(variant)}`} disabled={variant === "disabled"}>
-            {children}
-        </button>
+        <div className={"button-container"}>
+            <button onClick={onClick} id={id} className={`button ${variants.get(variant)}`} disabled={variant === "disabled"}>
+                {children}
+            </button>
+        </div>
     );
 };
 

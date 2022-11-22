@@ -7,14 +7,17 @@ interface IProps {
 }
 
 const LoaderContainer: React.FC<IProps> = ({ isErrror = false }) => {
-    const background = require("../../assets/background.png")
-
+    
     useEffect(() => {
+        document.body.style.overflow = "hidden";
 
-    })
+        return () => {
+            document.body.style.overflow = "visible";
+        }
+    }, []);
 
     return (
-        <section className={"section-loader-container"} style={{ backgroundImage: `url(${background})` }}>
+        <section className={"section-loader-container"}>
             <div className="blur"></div>
             {isErrror
                 ? <span>Произошла ошибка подключения к серверу. Повторите позже.</span>

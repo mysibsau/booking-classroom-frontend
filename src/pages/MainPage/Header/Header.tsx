@@ -1,14 +1,13 @@
-import React, { useState } from 'react'
+import React from 'react'
 import "./Header.scss";
 
 const Header = () => {
-    const image = require("../../../assets/RulesImage.png")
-    const background = require("../../../assets/background.png")
+    const image = require("../../../assets/Calendar.png")
 
     return (
-        <section className={"header-container"} style={{ backgroundImage: `url(${background})` }}>
+        <section className={"header-container"}>
             <div className={"header-info"}>
-                <div>
+                <div className={"calendar-container"}>
                     <img src={image} alt="" />
                 </div>
                 <p>

@@ -2,6 +2,7 @@
 
 .classroomList {
     position: relative;
+    background: linear-gradient(rgb(91, 165, 58), rgb(43, 139, 130));
     
     .classroomList-container {
         position: relative;
@@ -20,8 +21,7 @@
             .filters-container {
                 width: 100%;
                 padding: 10px;
-                background: $secondary-color;
-                backdrop-filter: blur(32px);
+                background: rgba(white, 0.3);
                 border-radius: 16px;
 
                 display: grid;

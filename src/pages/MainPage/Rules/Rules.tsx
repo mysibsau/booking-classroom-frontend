@@ -5,7 +5,6 @@ import "./Rules.scss";
 
 const Rules = () => {
     const { getStaticData, staticData } = useClassroomStore(state => state)
-    const background = require("../../../assets/background.png")
 
     const [rules, setRules] = useState<string[]>([])
 
@@ -20,8 +19,7 @@ const Rules = () => {
     }, [staticData])
 
     return (
-        <section className={"rules-container"} style={{ backgroundImage: `url(${background})` }}>
-            <div className="blur" />
+        <section className={"rules-container"}>
             <div className={"rules-image-container"}>
                 {staticData &&
                     <Carousel indicators>
@@ -42,7 +40,6 @@ const Rules = () => {
                 }
             </div>
             <div className={"rules-info"}>
-                <div className={"required"}>Обязательно ознакомиться</div>
                 <h2>{staticData?.title}</h2>
                 <ul>
                     {rules.map((item, index) =>

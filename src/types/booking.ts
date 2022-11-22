@@ -38,6 +38,6 @@ export interface IBookingStore {
     isError: boolean;
     bookingList?: IMyBooking[];
     count: number;
-    getBookingList: (params?: Record<string, string | number>) => void;
-    createBooking: (data: ICreateBooking) => void;
+    getBookingList: (token: string, params?: Record<string, string | number>) => void;
+    createBooking: (token: string, data: ICreateBooking) => void;
 }

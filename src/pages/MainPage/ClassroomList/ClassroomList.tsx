@@ -11,8 +11,6 @@ const ClassroomList = () => {
     const [address, setAddress] = useState("")
     const [page, setPage] = useState(1)
 
-    const background = require("../../../assets/background.png")
-
     useEffect(() => {
         getClassroomListHandler()
     }, [page])
@@ -27,8 +25,7 @@ const ClassroomList = () => {
     }
 
     return (
-        <section className={"classroomList"} style={{ backgroundImage: `url(${background})` }}>
-            <div className={"blur"}></div>
+        <section className={"classroomList"}>
             <div className={"classroomList-container"}>
                 <h2>Наши аудитории</h2>
                 <div className={"filters"}>

@@ -1,69 +1,70 @@
 @import "../variables";
 
-.myButton {
-    width: 100%;
-    padding: 11px 25px;
-    line-height: 127.7%;
-    border-radius: $border-radius;
-    position: relative;
-    height: 45px;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    font-size: 16px;
-    border: none;
-
-    &.default {
-        color: $primary-color;
-        background-color: $base-color;
-
-        &:hover {
-            background-color: rgba($color: $secondary-color, $alpha: 0.4);
-        }
-    }
-
-    &.primary {
-        color: $base-color;
-        background-color: $primary-color;
-
-        &:hover {
-            background-color: rgba($color: $primary-color, $alpha: 0.8);
-        }
-    }
-
-    &.danger {
-        color: $base-color;
-        background-color: $danger-color;
-
-        &:hover {
-            background-color: rgba($color: $danger-color, $alpha: 0.8);
-        }
-    }
-
-    &.secondary {
-        color: $base-color;
-        background-color: $secondary-color;
-
-        &:hover {
-            background-color: rgba($color: $secondary-color, $alpha: 0.8);
-        }
-    }
-
-    &.success {
-        color: $base-color;
-        background-color: $success-color;
-
-        &:hover {
-            background-color: rgba($color: $success-color, $alpha: 0.8);
-        }
-    }
-
-    &.disabled {
+.button-container {
+    .button {
+        width: 100%;
+        padding: 11px 25px;
+        border-radius: $border-radius;
+        position: relative;
+        height: 45px;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
         border: none;
-        color: $modest-color-font;
-        background-color: $modest-color;
-    }
+        font-size: 15px;
 
-    &:active {
-        top: 4px;
+        &.default {
+            color: $primary-color;
+            background-color: rgba($color: $base-color, $alpha: 0.8);
+
+            &:hover {
+                background-color: rgba($color: $base-color, $alpha: 0.6);
+            }
+        }
+
+        &.primary {
+            color: $base-color;
+            background-color: $primary-color;
+
+            &:hover {
+                background-color: rgba($color: $primary-color, $alpha: 0.8);
+            }
+        }
+
+        &.danger {
+            color: $base-color;
+            background-color: $danger-color;
+
+            &:hover {
+                background-color: rgba($color: $danger-color, $alpha: 0.8);
+            }
+        }
+
+        &.secondary {
+            color: $base-color;
+            background-color: $secondary-color;
+
+            &:hover {
+                background-color: rgba($color: $secondary-color, $alpha: 0.8);
+            }
+        }
+
+        &.success {
+            color: $base-color;
+            background-color: $success-color;
+
+            &:hover {
+                background-color: rgba($color: $success-color, $alpha: 0.8);
+            }
+        }
+
+        &.disabled {
+            border: none;
+            color: $modest-color-font;
+            background-color: $modest-color;
+        }
+
+        &:active {
+            top: 4px;
+        }
     }
 }

@@ -5,18 +5,25 @@ import BookingItem from './BookingItem'
 import Footer from '../../components/Footer'
 import Pagination from '../../components/UI/Pagination'
 import LoaderContainer from '../../components/LoaderContainer'
+import useCookie from '../../hooks/useCookie'
 
 const MyProfilePage = () => {
     const { getBookingList, bookingList, count, loading, isError } = useBookingStore(state => state)
     const [page, setPage] = useState(1)
 
-    const background = require("../../assets/background.png")
+    const { getCookie } = useCookie()
 
     useEffect(() => {
-        getBookingList({
-            page: page,
-            page_size: 10
-        })
+        const cookieUser = getCookie("user")
+        if (cookieUser) {
+            getBookingList(
+                JSON.parse(cookieUser).token,
+                {
+                    page: page,
+                    page_size: 10
+                }
+            )
+        }
     }, [page])
 
     useEffect(() => {
@@ -25,9 +32,9 @@ const MyProfilePage = () => {
 
     return (
         <main>
-            {/* {loading && <LoaderContainer />} */}
+            {loading && <LoaderContainer />}
             {isError && <LoaderContainer isErrror />}
-            <section className={"booking-container"} style={{ backgroundImage: `url(${background})` }}>
+            <section className={"booking-container"}>
                 <div className={"bookingList-container"}>
                     <div className="blur"></div>
                     <h1>История брони</h1>

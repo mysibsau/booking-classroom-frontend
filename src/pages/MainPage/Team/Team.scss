@@ -1,6 +1,8 @@
 @import "src/styles/variables";
 
 .team-container {
+    background: linear-gradient(rgb(43, 139, 130), rgb(91, 165, 58));
+
     .team-list-container {
         width: 80%;
         margin: 50px auto;
@@ -9,13 +11,18 @@
         justify-content: space-evenly;
 
         .team-list-item {
+
+            background-color: rgba(white, 0.3);
+            border-radius: $border-radius;
+
+            margin: 0 20px;
+            padding: 20px 0;
             margin-bottom: 20px;
-            
+
             .image-container {
                 display: flex;
                 justify-content: center;
                 position: relative;
-                height: 260px;
 
                 img {
                     position: relative;
@@ -25,18 +32,12 @@
                     transition: all 0.3s ease;
 
                     &:hover {
-                        width: 250px;
-                        height: 250px;
+                        transform: scale(1.05);
                     }
 
                     @media screen and (max-width: 600px) {
                         width: 150px;
                         height: 150px;
-
-                        &:hover {
-                            width: 160px;
-                            height: 160px;
-                        }
                     }
                 }
 
@@ -59,7 +60,7 @@
                     &:last-child {
                         font-size: 18px;
                         font-style: italic;
-                        color: $secondary-color;
+                        color: $modest-color;
                     }
                 }
             }

@@ -4,10 +4,11 @@
     position: relative;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    align-items: center;
 
     padding: 0 10%;
     color: white;
+
+    background: linear-gradient(rgb(43, 139, 130), rgb(91, 165, 58));
 
     @media screen and (max-width: 1500px) {
         grid-template-columns: 1fr;
@@ -86,18 +87,10 @@
     .rules-info {
         position: relative;
         padding: 50px;
+        padding-top: 20px;
 
         h2 {
             text-align: left;
-        }
-
-        .required {
-            color: $danger-color;
-            letter-spacing: 0.05em;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            margin-bottom: 20px;
-            font-size: 18px;
         }
 
         ul {

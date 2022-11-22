@@ -11,7 +11,7 @@
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 
     &::-webkit-scrollbar {
-        width: 10px;
+        width: 7px;
     }
 
     &::-webkit-scrollbar-track {
@@ -42,16 +42,16 @@ main {
         letter-spacing: 0.1em;
     }
 
-    section {
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-attachment: fixed;
-        background-position: center;
+    // section {
+    //     background-repeat: no-repeat;
+    //     background-size: cover;
+    //     background-attachment: fixed;
+    //     background-position: center;
 
-        @media screen and (max-width: 1000px) {
-            background-attachment: scroll !important;
-        }
-    }
+    //     @media screen and (max-width: 1000px) {
+    //         background-attachment: scroll !important;
+    //     }
+    // }
 }
 
 .blur {

@@ -11,54 +11,46 @@ export const useBookingStore = create<IBookingStore>()(
             isError: false,
             bookingList: undefined,
             count: 0,
-            getBookingList: async (params) => {
-                const authStore = sessionStorage.getItem('authStore')
-                if (authStore) {
-                    set(state => {
-                        state.loading = true
-                    })
-                    const userToken = JSON.parse(authStore).state.user.token
+            getBookingList: async (token, params) => {
+                set(state => {
+                    state.loading = true
+                })
 
-                    await axios.get("/booking/",
-                        {
-                            headers: { Authorization: `Token ${userToken}` },
-                            params
-                        }
-                    ).then((response) => {
-                        const data = response.data;
-                        set((state) => {
-                            state.loading = false;
-                            state.bookingList = data.results;
-                            state.count = data.count;
-                        });
-                    }).catch((e: AxiosError) => {
-                        const error = JSON.stringify(e);
-                        set((state) => {
-                            state.loading = false;
-                            state.isError = true;
-                        });
+                await axios.get("/booking/",
+                    {
+                        headers: { Authorization: `Token ${token}` },
+                        params
+                    }
+                ).then((response) => {
+                    const data = response.data;
+                    set((state) => {
+                        state.loading = false;
+                        state.bookingList = data.results;
+                        state.count = data.count;
                     });
-                }
+                }).catch((e: AxiosError) => {
+                    const error = JSON.stringify(e);
+                    set((state) => {
+                        state.loading = false;
+                        state.isError = true;
+                    });
+                });
             },
-            createBooking: async (data) => {
-                const authStore = sessionStorage.getItem('authStore')
+            createBooking: async (token, data) => {
+                set(state => {
+                    state.loading = true
+                })
 
-                if (authStore) {
-                    set(state => {
-                        state.loading = true
-                    })
-                    const userToken = JSON.parse(authStore).state.user.token
-
-                    await axios.post("/booking/create/", data,
-                        {
-                            headers: { Authorization: `Token ${userToken}` }
-                        }).then(() =>
-                            set(state => {
-                                state.loading = false
-                            })
-                        )
-                }
+                await axios.post("/booking/create/", data,
+                    {
+                        headers: { Authorization: `Token ${token}` }
+                    }).then(() =>
+                        set(state => {
+                            state.loading = false
+                        })
+                    )
             }
+
         })
     )
 );

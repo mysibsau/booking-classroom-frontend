@@ -11,6 +11,7 @@ import { useAuthStore, useBookingStore, useClassroomStore } from '../../../../..
 import { Button, Input, InputTime, Select, Textarea } from '../../../../../../components/UI';
 import { Link } from 'react-router-dom';
 import { getLockDates, getLockTimes } from './BookingFormHealper';
+import useCookie from '../../../../../../hooks/useCookie';
 
 const statusOpt = [
     { id: "0", name: "Студент" },
@@ -26,6 +27,8 @@ const BookingForm: React.FC<IProps> = ({ classroom, setLogInForm }) => {
     const { user } = useAuthStore(state => state)
     const { createBooking } = useBookingStore(state => state)
     const { staticData } = useClassroomStore(state => state)
+
+    const { getCookie } = useCookie()
 
     const [allDay, setAllDay] = useState(false);
 
@@ -98,19 +101,23 @@ const BookingForm: React.FC<IProps> = ({ classroom, setLogInForm }) => {
             }
 
             if (newBookingDates.length) {
-                createBooking(
-                    {
-                        title: name,
-                        contact_info: contacts,
-                        equipment: equipments,
-                        room: classroom.id,
-                        description: description,
-                        position: userPosition,
-                        personal_status: parseInt(userStatus),
-                        booking_date_time: newBookingDates
-                    }
-                )
-                setDefaultState()
+                const cookieUser = getCookie("user")
+                if (cookieUser) {
+                    createBooking(
+                        JSON.parse(cookieUser).token,
+                        {
+                            title: name,
+                            contact_info: contacts,
+                            equipment: equipments,
+                            room: classroom.id,
+                            description: description,
+                            position: userPosition,
+                            personal_status: parseInt(userStatus),
+                            booking_date_time: newBookingDates
+                        }
+                    )
+                    setDefaultState()
+                }
             }
         }
     }
@@ -193,11 +200,11 @@ const BookingForm: React.FC<IProps> = ({ classroom, setLogInForm }) => {
                                     </div>
                                     <div className={"description"}>
                                         <label>Описание мероприятия</label>
-                                        <Textarea value={equipments} onChange={setEquipments} placeholder={staticData.pseudo_text_booking} required rows={5} />
+                                        <Textarea value={description} onChange={setDescription} placeholder={staticData.pseudo_text_booking} required rows={5} />
                                     </div>
                                     <div className={"description"}>
                                         <label>Дополнительное оборудование</label>
-                                        <Textarea value={description} onChange={setDescription} placeholder={staticData.pseudo_text_equipment} rows={5} />
+                                        <Textarea value={equipments} onChange={setEquipments} placeholder={staticData.pseudo_text_equipment} rows={5} />
                                     </div>
                                     <div>
                                         <label>Укажите ваш номер телефона</label>
@@ -239,7 +246,6 @@ const BookingForm: React.FC<IProps> = ({ classroom, setLogInForm }) => {
                                                                 Весь день
                                                             </label>
                                                         </div>
-                                                        <div>Применить</div>
                                                     </div>
                                                     : <div>
                                                         <DayPicker
@@ -262,7 +268,6 @@ const BookingForm: React.FC<IProps> = ({ classroom, setLogInForm }) => {
                                                                 <InputTime times={freeTimesEnd} value={endTime} onChange={setEndTime} />
                                                             </div>
                                                         }
-                                                        <div>Применить</div>
                                                     </div>
                                                 }
                                             </div>

@@ -4,6 +4,8 @@
     justify-content: center;
     align-items: center;
 
+    background: linear-gradient(rgb(91, 165, 58), rgb(43, 139, 130));
+
     .header-info {
         width: 80%;
         min-height: 60vh;
@@ -22,8 +24,18 @@
             grid-template-columns: 1fr;
         }
 
-        img {
-            width: 100%;
+        .calendar-container {
+            display: flex;
+            justify-content: center;
+
+            @media screen and (max-width: 1000px) {
+                justify-content: center;
+            }
+
+            img {
+                width: 100%;
+                max-width: 400px;
+            }
         }
 
         p {
