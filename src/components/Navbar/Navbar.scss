@@ -2,123 +2,229 @@
 
 .navbar {
     position: absolute;
-    width: 80vw;
     top: 0;
-    left: 10vw;
-    padding: 10px 0;
+    left: 0;
+    width: 100%;
+    padding: 10px 2vw;
     margin-bottom: 20px;
-    z-index: 100;
+    z-index: 50;
 
     font-size: 1.2rem;
 
     @media screen and (max-width: 1200px) {
         font-size: 1rem;
-        width: 96vw;
-        left: 2vw;
-    }
-
-    @media screen and (max-width: 1000px) {
         padding: 10px 20px;
     }
 
-    nav {
+    @media screen and (max-width: 800px) {
+        position: fixed;
+        background-color: rgba($color: white, $alpha: 0.3);
+    }
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .navbar-left {
         display: flex;
-        justify-content: space-between;
         align-items: center;
 
-        @media screen and (max-width: 900px) {
-            flex-direction: column;
-        }
+        .logo {
+            margin-right: 20px;
 
-        .navbar-left {
+            display: flex;
+            align-items: center;
+        }
+    }
+
+    .navbar-right {
+        position: relative;
+        height: 70px;
+        display: flex;
+        align-items: center;
+
+        ul {
             display: flex;
             align-items: center;
 
-            @media screen and (max-width: 1000px) {
-                width: 100%;
-                justify-content: flex-start;
+            li {
+                span {
+                    display: inline-block;
+                    font-size: inherit;
+                    color: white;
+                }
             }
 
-            .logo {
-                margin-right: 20px;
+            .navLink {
+                span {
+                    padding: 0 10px;
+                    font-family: 'Rubik';
 
-                display: flex;
-                align-items: center;
-            }
-        }
-
-        .navbar-right {
-            @media screen and (max-width: 1000px) {
-                width: 100%;
-                display: flex;
-                justify-content: flex-end;
-            }
-
-            @media screen and (max-width: 800px) {
-                margin-top: 20px;
-            }
-
-            div {
-                display: flex;
-                justify-content: center;
-                align-items: center;
+                    @media screen and (max-width: 800px) {
+                        padding: 0;
+                    }
+                }
             }
 
             .userInfo {
-                position: relative;
-                padding: 10px 40px;
-                margin-right: 10px;
-
-                display: flex;
-                flex-direction: column;
-                align-items: flex-start;
-
-                .blur {
-                    border-radius: 10px;
-                }
-
                 .name {
-                    position: relative;
-                    font-size: inherit;
-                    font-weight: 500;
-                    color: white;
                     font-style: italic;
-                }
-
-                @media screen and (max-width: 1000px) {
+                    font-weight: 500;
                     padding: 10px 20px;
-                }
-            }
-
-            .buttons-container {
-                button:first-child {
-                    margin-right: 10px;
 
                     @media screen and (max-width: 1000px) {
-                        margin-right: 0;
+                        padding: 10px 20px;
+                    }
+
+                    @media screen and (max-width: 800px) {
+                        padding: 0;
                     }
                 }
             }
         }
 
-        .navbar-center {
-            flex: 1 1 auto;
-            text-align: right;
-            height: 45px;
-            display: flex;
-            flex-direction: row;
-            justify-content: flex-end;
-            align-items: center;
+        @media screen and (max-width: 800px) {
+            nav {
+                position: absolute;
+                top: -10px;
+                right: -170px;
+                width: 300px;
+                height: 50vh;
 
-            span {
-                display: inline-block;
-                margin: 0 10px;
-                font-family: 'Rubik';
-                font-style: normal;
-                font-weight: 400;
-                font-size: inherit;
-                color: white;
+                padding: 60px 20px;
+                padding-top: 80px;
+
+                background-color: white;
+                border-radius: 8px 0 0 8px;
+
+                transition: all 600ms ease-in-out;
+
+                opacity: 0;
+                z-index: -1;
+                transform: scaleX(0);
+
+                ul {
+                    position: relative;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: space-evenly;
+                    height: 100%;
+
+                    li {
+                        padding: 10px;
+
+                        span {
+                            color: rgb(91, 165, 58);
+                            text-transform: uppercase;
+                            letter-spacing: 1.2;
+                        }
+                    }
+
+                    .userInfo {
+                        position: absolute;
+                        top: -60px;
+                        left: -10px;
+                    }
+
+                    .logOut {
+                        cursor: pointer;
+                        font-family: 'Rubik';
+                    }
+                }
+
+                &.active {
+                    opacity: 1;
+                    z-index: 60;
+                    right: -20px;
+                    transform: scaleX(1);
+                }
             }
+        }
+
+        .buttons-container {
+            button {
+                padding: 5px 20px;
+                height: auto;
+            }
+        }
+
+        .hamburger {
+            display: none;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 70;
+
+            height: 50px;
+            width: 50px;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: all 0.2s ease-in-out;
+            background: rgba(255, 255, 255, 0.2);
+
+            @media screen and (max-width: 800px) {
+                display: block;
+            }
+
+            &:hover {
+                transform: scale(1.2);
+                box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
+            }
+
+            .bar-1,
+            .bar-2,
+            .bar-3 {
+                position: absolute;
+                left: 25%;
+                top: 50%;
+                width: 25px;
+                height: 3px;
+                background-color: white;
+                transition: all 400ms cubic-bezier(.84, .06, .52, 1.8);
+            }
+
+            .bar-1 {
+                transform: translateY(8px);
+                animation-delay: 100ms;
+            }
+
+            .bar-3 {
+                transform: translateY(-8px);
+                animation-delay: 250ms;
+            }
+
+            .clear {
+                clear: both;
+            }
+
+            &.active {
+                background: rgba(43, 139, 130, 0.1);
+
+                .bar-1,
+                .bar-2,
+                .bar-3 {
+                    background-color: rgb(91, 165, 58);
+                }
+
+                .bar-1 {
+                    transform: rotate(40deg);
+                }
+
+                .bar-3 {
+                    transform: rotate(-40deg);
+                }
+
+                .bar-2 {
+                    opacity: 0;
+                }
+            }
+        }
+    }
+
+    .logIn-button {
+        button {
+            padding: 5px 20px;
+            height: auto;
         }
     }
 }

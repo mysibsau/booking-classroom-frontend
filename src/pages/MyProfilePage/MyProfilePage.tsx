@@ -36,7 +36,6 @@ const MyProfilePage = () => {
             {isError && <LoaderContainer isErrror />}
             <section className={"booking-container"}>
                 <div className={"bookingList-container"}>
-                    <div className="blur"></div>
                     <h1>История брони</h1>
                     <div className={"booking-list header"}>
                         <div>Цель бронирования</div>
