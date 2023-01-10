@@ -39,23 +39,23 @@ export const getLockTimes = (datatimes: IBookingDates[], date: string) => {
                 const startTime = parseInt(day.start_time.split(":")[0])
                 const endTime = parseInt(day.end_time.split(":")[0])
                 for (let hours = startTime; hours <= endTime; hours += 1) {
-                    timesLocked.push(`${hours}:00`)
+                    timesLocked.push(`${hours < 10 ? "0" + hours : hours}:00`)
                 }
             }
         }
 
         for (const day of datetimesItem) {
             if (day.start_time && day.end_time) {
-                for (let hours = 10; 10 <= hours && hours <= 22; hours += 1) {
+                for (let hours = 8; 8 <= hours && hours <= 22; hours += 1) {
                     if (!timesLocked.includes(`${hours}:00`) && !times.includes(`${hours}:00`)) {
-                        times.push(`${hours}:00`)
+                        times.push(`${hours < 10 ? "0" + hours : hours}:00`)
                     }
                 }
             }
         }
     } else {
-        for (let hours = 10; 10 <= hours && hours <= 22; hours += 1) {
-            times.push(`${hours}:00`)
+        for (let hours = 8; 8 <= hours && hours <= 22; hours += 1) {
+            times.push(`${hours < 10 ? "0" + hours : hours}:00`)
         }
     }
 
