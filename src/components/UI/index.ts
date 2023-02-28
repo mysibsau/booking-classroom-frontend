@@ -9,3 +9,4 @@ export * from "./Textarea";
 export * from "./Tooltip";
 export * from "./Carousel";
 export * from "./InputTime";
+export * from "./ExpandableWrapper";

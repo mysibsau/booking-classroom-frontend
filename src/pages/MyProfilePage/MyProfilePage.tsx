@@ -6,6 +6,7 @@ import Footer from '../../components/Footer'
 import Pagination from '../../components/UI/Pagination'
 import LoaderContainer from '../../components/LoaderContainer'
 import useCookie from '../../hooks/useCookie'
+import { Link } from 'react-router-dom'
 
 const MyProfilePage = () => {
     const { getBookingList, bookingList, count, loading, isError } = useBookingStore(state => state)
@@ -37,16 +38,24 @@ const MyProfilePage = () => {
             <section className={"booking-container"}>
                 <div className={"bookingList-container"}>
                     <h1>История брони</h1>
-                    <div className={"booking-list header"}>
-                        <div>Цель бронирования</div>
-                        <div>Аудитория</div>
-                        <div>Статус</div>
-                        <div></div>
-                    </div>
-                    {bookingList &&
-                        bookingList.map(item =>
-                            <BookingItem bookingItem={item} key={item.id} />
-                        )
+                    {bookingList
+                        ? <>
+                            <div className={"booking-list header"}>
+                                <div>Цель бронирования</div>
+                                <div>Аудитория</div>
+                                <div>Статус</div>
+                                <div></div>
+                            </div>
+                            {bookingList.map(item =>
+                                <BookingItem bookingItem={item} key={item.id} />
+                            )}
+                        </>
+                        : <div className={"no-applications"}>
+                            <span>
+                                У вас отсутствуют заявки на проведение мероприятий. <br />
+                                Можете оставить заявку на <Link to={"/"}>главной странице</Link>.
+                            </span>
+                        </div>
                     }
                 </div>
                 {count > 10

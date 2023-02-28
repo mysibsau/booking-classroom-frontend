@@ -22,6 +22,7 @@ export interface ICreateBooking {
 
 export interface IMyBooking {
     id: number;
+    title: string;
     booking_date_time: IBookingDates[];
     contact_info: string;
     equipment: string;

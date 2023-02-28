@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Button, Input, Select } from '../../../components/UI';
 import Pagination from '../../../components/UI/Pagination';
 import { useClassroomStore } from '../../../stores';
@@ -10,6 +10,8 @@ const ClassroomList = () => {
     const { getClassroomList, classroomList, count } = useClassroomStore(state => state)
     const [address, setAddress] = useState("")
     const [page, setPage] = useState(1)
+
+    const ref = useRef<HTMLHeadingElement>(null);
 
     useEffect(() => {
         getClassroomListHandler()
@@ -27,7 +29,7 @@ const ClassroomList = () => {
     return (
         <section className={"classroomList"}>
             <div className={"classroomList-container"}>
-                <h2>Наши аудитории</h2>
+                <h2 ref={ref}>Наши аудитории</h2>
                 <div className={"filters"}>
                     <div className={"filters-container"}>
                         <div className={"filters-left"}>
@@ -46,14 +48,14 @@ const ClassroomList = () => {
                         : <></>
                     }
                 </div>
+                {count > 6
+                    ?
+                    <div className={"pagination-container"} onClick={() => ref.current!.scrollIntoView()}>
+                        <Pagination count={count} page={page} setPage={setPage} perPage={6} />
+                    </div>
+                    : <></>
+                }
             </div>
-            {count > 6
-                ?
-                <div className={"pagination-container"}>
-                    <Pagination count={count} page={page} setPage={setPage} perPage={6} />
-                </div>
-                : <></>
-            }
         </section>
     )
 }

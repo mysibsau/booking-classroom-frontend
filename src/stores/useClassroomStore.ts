@@ -21,21 +21,14 @@ export const useClassroomStore = create<IClassroomStore>()(
             count: 0,
             staticData: defaultStaticData,
             getClassroomList: async (params) => {
-                set(state => {
-                    state.loading = true
-                })
-
                 await axios.get("/rooms/", { params }).then((response) => {
                     const data = response.data;
                     set((state) => {
-                        state.loading = false;
                         state.classroomList = data.results;
                         state.count = data.count;
                     });
                 }).catch((e: AxiosError) => {
-                    const error = JSON.stringify(e);
                     set((state) => {
-                        state.loading = false;
                         state.isError = true;
                     });
                 });

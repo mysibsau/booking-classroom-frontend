@@ -36,7 +36,7 @@ const Pagination: React.FC<IProps> = ({ perPage = 6, setPage, page, count }) => 
         <div className={"Pagination"}>
             <div>
                 <span className={"arrows"} onClick={() => changePage("previous")}>
-                    <IconArrowLeft color={"default"} size={25} />
+                    <IconArrowLeft color={page !== 1 ? "white" : "default"} size={25} />
                 </span>
                 <div className={"pageNums"}>
                     {pageList && pageList.map((pageNum, index) =>
@@ -50,7 +50,7 @@ const Pagination: React.FC<IProps> = ({ perPage = 6, setPage, page, count }) => 
                     )}
                 </div>
                 <span className={"arrows"} onClick={() => changePage("next")}>
-                    <IconArrowRight color={"default"} size={25} />
+                    <IconArrowRight color={page !== maxPage ? "white" : "default"} size={25} />
                 </span>
             </div>
         </div>

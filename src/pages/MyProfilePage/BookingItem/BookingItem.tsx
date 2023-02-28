@@ -1,6 +1,6 @@
 import { link } from 'fs';
 import React, { useEffect, useState } from 'react'
-import { IconArrowDown, IconArrowUp } from '../../../components/UI';
+import { ExpandableWrapper, IconArrowDown, IconArrowUp } from '../../../components/UI';
 import { IMyBooking } from '../../../types/booking';
 import "./BookingItem.scss";
 
@@ -32,7 +32,7 @@ const BookingItem: React.FC<IProps> = ({ bookingItem }) => {
         <div className={"item-container"}>
             <div className={"booking-list item"} onClick={() => setShowDesc(!showDesc)}>
                 <div className={"name"}>
-                    {bookingItem.description}
+                    {bookingItem.title}
                 </div>
                 <div>
                     {bookingItem.room.address}
@@ -42,15 +42,12 @@ const BookingItem: React.FC<IProps> = ({ bookingItem }) => {
                 >
                     <span>{statusLabel[bookingItem.status]}</span>
                 </div>
-                <div className="icon">
-                    {showDesc
-                        ? <IconArrowUp color={"black"} size={iconSize} />
-                        : <IconArrowDown color={"black"} size={iconSize} />
-                    }
+                <div className={"icon" + (showDesc ? " active" : "")}>
+                    <IconArrowUp color={"black"} size={iconSize} />
                 </div>
             </div>
-            {showDesc
-                ? <div className={"description"}>
+            <ExpandableWrapper isExpanded={showDesc}>
+                <div className={"description"}>
                     <div className={"main-info-container"}>
                         <div className={"info-name"}>
                             <div>Описание мероприятия:</div>
@@ -109,8 +106,7 @@ const BookingItem: React.FC<IProps> = ({ bookingItem }) => {
                         : <></>
                     }
                 </div>
-                : <></>
-            }
+            </ExpandableWrapper>
         </div>
     )
 }

@@ -20,6 +20,9 @@
         padding: 20px 40px;
         overflow-y: auto;
 
+        background-color: rgba(white, 0.1);
+        border-radius: 24px;
+
         h1 {
             position: relative;
         }
@@ -71,6 +74,23 @@
             }
         }
 
+        .no-applications {
+            font-size: 30px;
+            color: white;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            a {
+                color: $primary-color;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
 
         @media all and (max-width: 800px) {
             width: 100%;

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import "./MainPage.scss";
 import ClassroomList from './ClassroomList';
 import Header from './Header/Header';

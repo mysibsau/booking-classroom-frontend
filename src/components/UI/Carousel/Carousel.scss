@@ -17,7 +17,7 @@
 
     .indicators {
         position: absolute;
-        bottom: 5px;
+        bottom: 15px;
         width: 100%;
 
         display: flex;
@@ -29,15 +29,16 @@
             display: flex;
             justify-content: center;
 
-            background-color: rgba(white, 0.6);
             border-radius: 15px;
 
             >* {
                 cursor: pointer;
                 position: relative;
-                padding: 8px;
+                padding: 4px;
+                margin: 0 2px;
                 border-radius: 50px;
                 transition: all 0.5s ease-in-out;
+                background-color: rgba(white, 0.7);
 
                 &.active {
                     background-color: rgba($primary-color, 1);
