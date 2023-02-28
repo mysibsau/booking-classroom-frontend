@@ -38,7 +38,7 @@ const MyProfilePage = () => {
             <section className={"booking-container"}>
                 <div className={"bookingList-container"}>
                     <h1>История брони</h1>
-                    {bookingList
+                    {bookingList?.length
                         ? <>
                             <div className={"booking-list header"}>
                                 <div>Цель бронирования</div>
