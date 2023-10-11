@@ -207,6 +207,14 @@ const BookingForm: React.FC<IProps> = ({ classroom, setLogInForm }) => {
                                         <Textarea value={equipments} onChange={setEquipments} placeholder={staticData.pseudo_text_equipment} rows={5} />
                                     </div>
                                     <div>
+                                        <label>Ваш статус</label>
+                                        <Select
+                                            options={statusOpt}
+                                            value={userStatus}
+                                            setValue={setUserStatus}
+                                        />
+                                    </div>
+                                    <div>
                                         <label>Укажите ваш номер телефона</label>
                                         <Input value={contacts} onChange={setContacts} type={"tel"} placeholder={"Ваш контактный телефон"} required />
                                     </div>
@@ -274,14 +282,6 @@ const BookingForm: React.FC<IProps> = ({ classroom, setLogInForm }) => {
                                             : <></>
                                         }
                                     </div>
-                                    <div>
-                                        <label>Ваш статус</label>
-                                        <Select
-                                            options={statusOpt}
-                                            value={userStatus}
-                                            setValue={setUserStatus}
-                                        />
-                                    </div>
                                 </div>
                                 <Button variant={"primary"}>
                                     Отправить
@@ -294,7 +294,7 @@ const BookingForm: React.FC<IProps> = ({ classroom, setLogInForm }) => {
                     </div>
                 </>
                 : <h1 className={"confirm-message"}>
-                    Заявка отправлена! Вы можете отслеживать статус заявки на странице <Link to={"/my-profile"}>Мои заявки</Link>
+                    Заявка отправлена! <span>Дождитесь подтверждения заявки администратором.</span> Вы можете отслеживать статус заявки на странице <Link to={"/my-profile"}>Мои заявки</Link>
                 </h1>
             }
         </>
