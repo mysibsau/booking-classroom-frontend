@@ -34,7 +34,7 @@ const ClassroomItem: React.FC<IProps> = ({ classroom }) => {
                 <div className={"description"}>{classroom.description}</div>
             </div>
             <div className={"button"}>
-                <Button variant={"primary"} onClick={() => setShowModal(true)}>Подробнее</Button>
+                <Button variant={"primary"} onClick={() => setShowModal(true)}>Забронировать</Button>
             </div>
             <Modal isShow={showModal} setIsShow={setShowModal} title={title} >
                 <ItemModal classroom={classroom} setTitle={setTitle} />
