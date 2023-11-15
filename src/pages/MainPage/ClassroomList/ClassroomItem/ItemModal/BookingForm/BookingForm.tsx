@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import "./BookingForm.scss"
 
-import { DayPicker, DateRange } from 'react-day-picker';
+import { DayPicker, DateRange, Row, RowProps } from 'react-day-picker';
 
 import ru from 'date-fns/locale/ru';
 import 'react-day-picker/dist/style.css';
@@ -12,6 +12,7 @@ import { Button, Input, InputTime, Select, Textarea } from '../../../../../../co
 import { Link } from 'react-router-dom';
 import { getLockDates, getLockTimes } from './BookingFormHealper';
 import useCookie from '../../../../../../hooks/useCookie';
+import {differenceInCalendarDays} from "date-fns";
 
 const statusOpt = [
     { id: "0", name: "Студент" },
@@ -185,6 +186,16 @@ const BookingForm: React.FC<IProps> = ({ classroom, setLogInForm }) => {
         setDateTimeLabel(newLabel)
     }, [selectedDay, selectedManyDays, allDay, startTime, endTime])
 
+    function isPastDate(date: Date) {
+        return differenceInCalendarDays(date, new Date()) < 0;
+    }
+
+    function OnlyFutureRow(props: RowProps) {
+        const isPastRow = props.dates.every(isPastDate);
+        if (isPastRow) return <></>;
+            return <Row {...props} />;
+    }
+
     return (
         <>
             {!bookingConfirm
@@ -242,11 +253,13 @@ const BookingForm: React.FC<IProps> = ({ classroom, setLogInForm }) => {
                                                 {allDay
                                                     ? <div>
                                                         <DayPicker
+                                                            components={{ Row: OnlyFutureRow }}
                                                             locale={ru}
                                                             mode={"range"}
                                                             selected={selectedManyDays}
                                                             onSelect={setSelectedManyDays}
-                                                            hidden={hiddenDates}
+                                                            disabled={hiddenDates}
+                                                            hidden={isPastDate}
                                                         />
                                                         <div className="allDay-container">
                                                             <label htmlFor={`allDayCheck-${classroom.id}`}>
@@ -257,11 +270,13 @@ const BookingForm: React.FC<IProps> = ({ classroom, setLogInForm }) => {
                                                     </div>
                                                     : <div>
                                                         <DayPicker
+                                                            components={{ Row: OnlyFutureRow }}
                                                             locale={ru}
                                                             mode={"single"}
                                                             selected={selectedDay}
                                                             onSelect={setSelectedDay}
-                                                            hidden={hiddenDates}
+                                                            disabled={hiddenDates}
+                                                            hidden={isPastDate}
                                                         />
 
                                                         <div className="allDay-container">

@@ -20,7 +20,7 @@ const ClassroomList = () => {
     const getClassroomListHandler = () => {
         const params = {
             page,
-            page_size: 6,
+            page_size: 100,
             search: address
         }
         getClassroomList(params)
@@ -41,20 +41,20 @@ const ClassroomList = () => {
                     </div>
                 </div>
                 <div className={"classroom-list"}>
-                    {classroomList && classroomList.length
+                    {classroomList
                         ? classroomList.map(item =>
                             <ClassroomItem classroom={item} key={item.id} />
                         )
                         : <></>
                     }
                 </div>
-                {count > 6
-                    ?
-                    <div className={"pagination-container"} onClick={() => ref.current!.scrollIntoView()}>
-                        <Pagination count={count} page={page} setPage={setPage} perPage={6} />
-                    </div>
-                    : <></>
-                }
+                {/*{count > 6*/}
+                {/*    ?*/}
+                {/*    <div className={"pagination-container"} onClick={() => ref.current!.scrollIntoView()}>*/}
+                {/*        <Pagination count={count} page={page} setPage={setPage} perPage={6} />*/}
+                {/*    </div>*/}
+                {/*    : <></>*/}
+                {/*}*/}
             </div>
         </section>
     )
